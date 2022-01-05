@@ -1,0 +1,55 @@
+<app-main-header></app-main-header>
+<!-- <div class="back-color">
+    <div class="container">
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="pt-5">
+            <div>
+                <span class="title">Favorites</span>
+            </div>
+            <div>
+                <mat-button-toggle-group #group="matButtonToggleGroup" class="sort">
+                    <mat-button-toggle value="left" aria-label="Text align center" class="rod">
+                      <mat-icon class="fav-icon" routerLinkActive="active">view_module</mat-icon>
+                    </mat-button-toggle>
+                    <mat-button-toggle value="center" aria-label="Text align center" class="rod">
+                      <mat-icon class="fav-icon" routerLinkActive="active">view_stream</mat-icon>
+                    </mat-button-toggle>
+                    <mat-button-toggle value="right" aria-label="Text align center" class="rod">
+                      <mat-icon class="fav-icon" routerLinkActive="active">view_headline</mat-icon>
+                    </mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+        </div>
+        <div class="pt-3">
+          <div *ngFor="let listData of listDatas">
+            <app-list-product [listProduct] = "listData"></app-list-product>
+          </div>
+          <div class="item-desk">
+              <mat-paginator  [length]="100"
+                              [pageSize]="10"
+                              [pageSizeOptions]="[5, 10, 25, 100]"
+                              aria-label="Select page" class="filter"
+                              >
+              </mat-paginator>
+          </div>  
+          
+          
+          <div class="item-mob">
+              <div class="center">
+                  <button mat-button class="more">Show more</button>
+              </div>
+          </div>
+        </div>
+    </div>
+</div> -->
+<div>
+  
+  <button (click)="increment()">Increment</button>
+
+  <div>Current Count: {{ greeting$ | async }}</div>
+
+  <button (click)="decrement()">Decrement</button>
+
+  <button (click)="reset()">Reset Counter</button>
+
+</div>
+<app-main-footer></app-main-footer>
