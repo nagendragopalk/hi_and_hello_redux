@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 // import * as fromFavs from "../../store";
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import { decrement, ShowGreeting, reset } from 'src/app/store/actions';
+import { decrement, ShowGreeting, ShowDefaltGreeting } from 'src/app/store/actions';
 import { counterstore } from 'src/app/store/reducer';
 import {getGreeting } from 'src/app/store/selecter';
 // export interface ListProductData {
@@ -195,7 +195,7 @@ export class FavoritesComponent implements OnInit {
   }
  
   reset() {
-    this.store.dispatch(reset());
+    this.store.dispatch(ShowDefaltGreeting());
   }
 
   ngOnInit(): void {

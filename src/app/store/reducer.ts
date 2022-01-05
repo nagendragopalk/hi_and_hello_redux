@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { ShowGreeting, decrement, reset } from './actions';
+import { ShowGreeting, decrement, ShowDefaltGreeting } from './actions';
 
 export const greetingFeatureKey = "greeting";
 
@@ -17,7 +17,11 @@ const _counterReducer = createReducer(
     greeting: "hello world"
 })),
   on(decrement, (state) => ({...state,})),
-  on(reset, (state) => ({...state,})),
+
+
+  on(ShowDefaltGreeting, (state) => ({...state,
+        greeting: initialState.greeting
+})),
 );
 
 export const selectGreeting= (state: counterstore) => state.greeting;

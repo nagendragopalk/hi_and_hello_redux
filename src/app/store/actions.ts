@@ -5,4 +5,4 @@ export const ShowGreeting = createAction('[Counter Component] Show Greeting');
 
 // export const increment = createAction('[Counter Component] Increment');
 export const decrement = createAction('[Counter Component] Decrement');
-export const reset = createAction('[Counter Component] Reset');
+export const ShowDefaltGreeting = createAction('[Counter Component] ShowDefaltGreeting');
