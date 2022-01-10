@@ -124,9 +124,6 @@ mat-icon{
 .item-img{
     width: 100px;
     height: 171px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 .item-review{
     padding-left: 10px;
@@ -163,3 +160,19 @@ mat-icon{
     font-weight: 700;
     color: #B3B3B3;
 }
+.bord-img{
+    padding-right: 15px;
+    width: 150px;
+    height: 160px;
+}
+.prd_img{
+    width: 100%;
+    object-fit: contain;
+    height: 100%;
+}
+.icons-heads{
+    color: #D8D8D8;
+  }
+  .icons-head{
+    color: #00AA75;
+  }

@@ -1,5 +1,5 @@
 <app-main-header></app-main-header>
-<!-- <div class="back-color">
+<div class="back-color">
     <div class="container">
         <div fxLayout="row" fxLayoutAlign="space-between center" class="pt-5">
             <div>
@@ -20,36 +20,28 @@
             </div>
         </div>
         <div class="pt-3">
-          <div *ngFor="let listData of listDatas">
-            <app-list-product [listProduct] = "listData"></app-list-product>
-          </div>
-          <div class="item-desk">
-              <mat-paginator  [length]="100"
-                              [pageSize]="10"
-                              [pageSizeOptions]="[5, 10, 25, 100]"
-                              aria-label="Select page" class="filter"
-                              >
-              </mat-paginator>
-          </div>  
-          
-          
-          <div class="item-mob">
-              <div class="center">
-                  <button mat-button class="more">Show more</button>
+          <mat-progress-bar mode="indeterminate" *ngIf="isLoading$ | async; else productList"></mat-progress-bar>
+            <ng-template #productList>
+              <div *ngFor="let products of products$ | async">
+                <app-list-product [listProduct] = "products"></app-list-product>
               </div>
-          </div>
+              <div class="item-desk">
+                <mat-paginator  #paginator [length]="totalRows$" 
+                    [pageIndex]="currentPage$" 
+                    [pageSize]="pageSize$"
+                    [pageSizeOptions]="pageSizeOptions" 
+                    (page)="pageChanged($event)"
+                    aria-label="Select page" 
+                    class="filter">
+                </mat-paginator>
+              </div>
+              <div class="item-mob">
+                  <div class="center">
+                      <button mat-button class="more">Show more</button>
+                  </div>
+              </div>
+            </ng-template>
         </div>
     </div>
-</div> -->
-<div>
-  
-  <button (click)="increment()">Increment</button>
-
-  <div>Current Count: {{ greeting$ | async }}</div>
-
-  <button (click)="decrement()">Decrement</button>
-
-  <button (click)="reset()">Reset Counter</button>
-
 </div>
 <app-main-footer></app-main-footer>

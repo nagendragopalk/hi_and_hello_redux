@@ -1,18 +1,20 @@
 <div class="item-desk">
     <div flex fxLayout="row" fxLayout.lt-sm="column" class="item-mob-bottom">
-        <div fxFlex="20" style="display: flex; align-items: center; justify-content: center;">
-            <img src="{{listProduct.image}}">
+        <div fxFlex="20">
+            <div class="bord-img" fxLayoutAlign="center center">
+                <img class="prd_img" src="{{ listProduct.images.length > 0 ? imgurl + listProduct.images[0].filename  : ''}}">
+            </div>
         </div>
         <div fxFlex="30" fxLayout="column" fxLayoutAlign="flex-start none" fxLayoutGap="gappx">
             <div class="titles">
-                <span class="fonts">{{listProduct.title}}</span>
+                <span class="fonts">{{listProduct.name}}</span>
             </div>
             <div class="row">
                 <div class="space">
-                    <span class="review">{{listProduct.reviews}} Reviews</span>
+                    <span class="review"> Reviews</span>
                 </div>
                 <div class="space">
-                    <span class="review">{{listProduct.offers}} Offers</span>
+                    <span class="review"> Offers</span>
                 </div>
             </div>
             <div class="subtitles">
@@ -34,11 +36,13 @@
         </div>
         <div fxFlex="15" fxLayout="column" fxLayoutAlign="flex-start center">
             <div class="titles">
-                <mat-icon>{{listProduct.favorite}}</mat-icon>
+                <button mat-icon-button aria-label="" (click)="toggleSelected()">
+                    <mat-icon *ngIf="selected" class="icons-head" routerLinkActive="active">favorite</mat-icon>   <mat-icon *ngIf="!selected" aria-label="" class="icons-heads">favorite_border</mat-icon>
+                </button>
             </div>
             <div class="subtitles dec">
                 <button mat-button  class="buy" routerLink="/item-selected">
-                    {{listProduct.button_btn}}
+                    Buy                
                 </button>
             </div>    
         </div>
@@ -52,8 +56,8 @@
         <div class="item-botam">
             <div fxFlex.xs="35" fxFlex.sm="35" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50">
                 <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="gappx">
-                    <div class="item-img">
-                        <img src="{{listProduct.image}}">
+                    <div class="bord-img">
+                        <img class="prd_img" src="{{ listProduct.images.length > 0 ? imgurl + listProduct.images[0].filename  : ''}}">
                     </div>
                 </div>
             </div>
@@ -61,21 +65,23 @@
             <div fxFlex.xs="65" fxFlex.sm="65" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50">
                 <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="gappx">
                     <div>
-                        <span class="title">{{listProduct.title}}</span>
+                        <span class="fonts">{{listProduct.name}}</span>
                     </div>
                     
                     <div>
-                        <mat-icon>{{listProduct.favorite}}</mat-icon>
+                        <button mat-icon-button aria-label="" (click)="toggleSelected()">
+                            <mat-icon *ngIf="selected" class="icons-head" routerLinkActive="active">favorite</mat-icon>   <mat-icon *ngIf="!selected" aria-label="" class="icons-heads">favorite_border</mat-icon>
+                        </button>
                     </div>
                 </div>
     
                 <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="gappx">
                     <div>
-                        <span class="review">{{listProduct.reviews}} Reviews</span>
+                        <span class="review"> Reviews</span>
                     </div>
     
                     <div class="item-review">
-                        <span class="review">{{listProduct.offers}} Offers</span>
+                        <span class="review"> Offers</span>
                     </div>
                 </div>
     
@@ -101,7 +107,7 @@
                      </div>
     
                      <div>
-                        <button mat-button class="item-btn" routerLink="/item-selected">{{listProduct.button_btn}}</button>
+                        <button mat-button class="item-btn" routerLink="/item-selected">Buy</button>
                      </div>
                 </div>
             </div>

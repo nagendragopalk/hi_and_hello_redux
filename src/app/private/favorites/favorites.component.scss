@@ -65,3 +65,32 @@ mat-button-toggle{
         display: block;
     }
 }
+
+.page_bord{
+    border: 1px solid #B3B3B3;
+    border-radius: 5px;
+    width: 430px;
+    height: 40px;
+    .pre_btn{
+        border-right: 1px solid #B3B3B3;
+        font-family: "Montserrat";
+        font-size: 12px;
+        mat-icon{
+            font-size: 21px;
+        }
+    }
+    
+    .next_btn{
+        border-left: 1px solid #B3B3B3;
+        font-family: "Montserrat";
+        font-size: 12px;
+        mat-icon{
+            font-size: 21px;
+        }
+    }
+    .page_count{
+        min-width: 45px;
+        font-family: "Montserrat";
+        font-size: 12px;
+    }    
+}

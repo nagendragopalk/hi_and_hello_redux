@@ -1,203 +1,57 @@
-import { Component, OnInit } from '@angular/core';
-// import * as fromFavs from "../../store";
-import { Observable } from 'rxjs';
-import { Store, select } from '@ngrx/store';
-import { decrement, ShowGreeting, ShowDefaltGreeting } from 'src/app/store/actions';
-import { counterstore } from 'src/app/store/reducer';
-import {getGreeting } from 'src/app/store/selecter';
-// export interface ListProductData {
-//   image: string;
-//   title: string;
-//   subtitle: string;
-//   description: string;
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { props, Store } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
+import { Product } from 'src/app/services/market_services/market_modal';
+import * as fromActions from '../../store/actions';
+import * as fromStore from '../../store/reducer';
+import * as fromSelector from '../../store/selecter';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
-//   reviews: number;
-//   offers: number;
-//   rating : number;
-//   price: number;
-
-//   favorite: string;
-//   button_btn: string;
-// }
-
-// const ProductData: ListProductData[] = [
-//   { 
-//     image: '../../../../../assets/product4.png',
-//     title: 'School Bag Canvas with Art Kit',
-//     subtitle: 'Bag of Assorted Stationery Crayons , Sketch Pens.',
-//     description: ' Oil Pastel, Gel pens, Mechanical Pencils, Clay with Kids Activity Book inside',
-
-//     reviews: 75,
-//     offers: 5,
-//     rating : 4.5,
-//     price: 150,
-
-//     favorite: 'favorite_border',
-//     button_btn: 'Buy'
-//   },
-
-//   { 
-//     image: '../../../../../assets/product2.png',
-//     title: 'PARKER Vector Gold Pen',
-//     subtitle: '(Gold Nib) Fountain Pen',
-//     description: 'Body Color: Gold, Made of Gold Plated, Ink Color: Blue',
-
-//     reviews: 75,
-//     offers: 20,
-//     rating : 4.5,
-//     price: 12,
-
-//     favorite: 'favorite_border',
-//     button_btn: 'Buy'
-//   },
-
-//   { 
-//     image: '../../../../../assets/product1.png',
-//     title: 'Funblast Bag',
-//     subtitle: 'Bag of Assorted Stationery Crayons , Sketch Pens.',
-//     description: ' Oil Pastel, Gel pens, Mechanical Pencils, Clay with Kids Activity Book inside',
-
-//     reviews: 75,
-//     offers: 5,
-//     rating : 4.5,
-//     price: 100,
-
-//     favorite: 'favorite_border',
-//     button_btn: 'Buy'
-//   },
-
-//   { 
-//     image: '../../../../../assets/product3.png',
-//     title: 'Cello Colorup Kit',
-//     subtitle: '(Gold Nib) Fountain Pen',
-//     description: ' Body Color: Gold, Made of Gold Plated, Ink Color: Blue',
-
-//     reviews: 75,
-//     offers: 20,
-//     rating : 4.5,
-//     price: 18,
-
-//     favorite: 'favorite_border',
-//     button_btn: 'Buy'
-//   },
-
-//   { 
-//     image: '../../../../../assets/product4.png',
-//     title: 'School Bag Canvas with Art Kit',
-//     subtitle: 'Bag of Assorted Stationery Crayons , Sketch Pens.',
-//     description: ' Oil Pastel, Gel pens, Mechanical Pencils, Clay with Kids Activity Book inside',
-
-//     reviews: 75,
-//     offers: 5,
-//     rating : 4.5,
-//     price: 150,
-
-//     favorite: 'favorite_border',
-//     button_btn: 'Buy'
-//   },
-
-  // { 
-  //   image: '../../../../../assets/product6.png',
-  //   title: 'School Bag Canvas with Art Kit',
-  //   subtitle: 'Bag of Assorted Stationery Crayons , Sketch Pens.',
-  //   description: ' Oil Pastel, Gel pens, Mechanical Pencils, Clay with Kids Activity Book inside',
-
-  //   reviews: 75,
-  //   offers: 5,
-  //   rating : 4.5,
-  //   price: 150,
-
-  //   favorite: 'favorite_border',
-  //   button_btn: 'Bye'
-  // },
-
-  // { 
-  //   image: '../../../../../assets/product7.png',
-  //   title: 'School Bag Canvas with Art Kit',
-  //   subtitle: 'Bag of Assorted Stationery Crayons , Sketch Pens.',
-  //   description: ' Oil Pastel, Gel pens, Mechanical Pencils, Clay with Kids Activity Book inside',
-
-  //   reviews: 75,
-  //   offers: 5,
-  //   rating : 4.5,
-  //   price: 150,
-
-  //   favorite: 'favorite_border',
-  //   button_btn: 'Bye'
-  // },
-
-  // { 
-  //   image: '../../../../../assets/product8.png',
-  //   title: 'School Bag Canvas with Art Kit',
-  //   subtitle: 'Bag of Assorted Stationery Crayons , Sketch Pens.',
-  //   description: ' Oil Pastel, Gel pens, Mechanical Pencils, Clay with Kids Activity Book inside',
-
-  //   reviews: 75,
-  //   offers: 5,
-  //   rating : 4.5,
-  //   price: 150,
-
-  //   favorite: 'favorite_border',
-  //   button_btn: 'Bye'
-  // },
-
-  
-  // { 
-  //   image: '../../../../../assets/product3.png',
-  //   title: 'School Bag Canvas with Art Kit',
-  //   subtitle: 'Bag of Assorted Stationery Crayons , Sketch Pens.',
-  //   description: ' Oil Pastel, Gel pens, Mechanical Pencils, Clay with Kids Activity Book inside',
-
-  //   reviews: 75,
-  //   offers: 5,
-  //   rating : 4.5,
-  //   price: 150,
-
-  //   favorite: 'favorite_border',
-  //   button_btn: 'Bye'
-  // },
-
-  // { 
-  //   image: '../../../../../assets/product1.png',
-  //   title: 'School Bag Canvas with Art Kit',
-  //   subtitle: 'Bag of Assorted Stationery Crayons , Sketch Pens.',
-  //   description: ' Oil Pastel, Gel pens, Mechanical Pencils, Clay with Kids Activity Book inside',
-
-  //   reviews: 75,
-  //   offers: 5,
-  //   rating : 4.5,
-  //   price: 150,
-
-  //   favorite: 'favorite_border',
-  //   button_btn: 'Bye'
-  // },
-// ];
 
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
-  styleUrls: ['./favorites.component.scss']
+  styleUrls: ['./favorites.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class FavoritesComponent implements OnInit {
 
-  greeting$: Observable<string>
-
-  constructor(private store: Store<counterstore>) {
-    this.greeting$ = this.store.select(getGreeting);
-    console.log(this.greeting$)
-  }
-  increment() {
-    this.store.dispatch(ShowGreeting());
-  }
- 
-  decrement() {
-    this.store.dispatch(decrement());
-  }
- 
-  reset() {
-    this.store.dispatch(ShowDefaltGreeting());
-  }
+  isLoading$: Observable<boolean>;
+  error$: Observable<string | null>;
+  products$: Observable<Product[]>;
+  totalRows$: number;
+  pageSize$:  number;
+  currentPage$: number;
+  pageSizeOptions: number[] = [1, 2, 5, 10, 50, 100];
+  @ViewChild(MatPaginator)paginator!: MatPaginator;
+  
+  constructor(private store: Store<fromStore.ProductState>) { }
 
   ngOnInit(): void {
+    this.store.dispatch(fromActions.Load_All_Products({pageSize: 5, CurentPage: 0}));
+    this.products$ = this.store.select(fromSelector.products);
+    this.isLoading$ = this.store.select(fromSelector.isLoading);
+    this.store.select(fromSelector.totalCount).subscribe(
+      (totpage: number) => {
+          this.totalRows$=totpage;
+      }
+     );
+     this.store.select(fromSelector.pageCountSize).subscribe(
+      (pagesiz: number) => {
+          this.pageSize$=pagesiz;
+      }
+     );
+  this.store.select(fromSelector.currentPageCount).subscribe(
+    (curpage: number) => {
+        this.currentPage$=curpage;
+    }
+   );
+    this.error$ = this.store.select(fromSelector.error);
+  }
+  pageChanged(event: PageEvent) : void {
+    console.log({ event });    
+    this.store.dispatch(fromActions.Load_All_Products({pageSize: event.pageSize, CurentPage: event.pageIndex}));
+    
   }
 }

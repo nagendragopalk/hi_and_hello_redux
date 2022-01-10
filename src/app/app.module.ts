@@ -134,8 +134,14 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { ReviewInputComponent } from './private/my-account/orders/review-input/review-input.component';
 import { StoreModule } from '@ngrx/store';
-import { counterReducer, greetingFeatureKey } from './store/reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import * as fromProduct from './store/reducer';
+import * as fromCategory from './store/category/category_reducer';
+import { environment } from 'src/environments/environment';
+import { Product_Effects } from './store/effect';
+import { reducers } from './store';
+// import * as formBrand from './store/category/brand_reducer';
 
 @NgModule({
   declarations: [
@@ -273,10 +279,13 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     NgbAlertModule,
     BrowserAnimationsModule,
     NgxPaginationModule,
-    StoreModule.forRoot({count: counterReducer}),
-    StoreDevtoolsModule.instrument({ maxAge: 50 }),
-    StoreModule.forFeature(greetingFeatureKey, counterReducer),
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({ maxAge: 75, logOnly: environment.production }),
+    StoreModule.forFeature(fromProduct.productsFeatureKey, fromProduct.Product_reducer),
+    StoreModule.forFeature(fromCategory.categorysFeatureKey, fromCategory.category_reducer),
+    // StoreModule.forFeature(formBrand.brandsFeatureKey, formBrand.brand_reducer),
 
+    EffectsModule.forRoot([Product_Effects])
   ],
   providers: [
     MatDatepickerModule,

@@ -1,32 +1,50 @@
-import { Action, createReducer, on } from '@ngrx/store';
-import { ShowGreeting, decrement, ShowDefaltGreeting } from './actions';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { createReducer, on } from '@ngrx/store';
+import { Product } from '../services/market_services/market_modal';
+import * as ProductActions from './actions';
 
-export const greetingFeatureKey = "greeting";
+export const productsFeatureKey = 'products';
 
-export interface counterstore { 
-    greeting: string;
+export interface ProductState extends EntityState<Product> {
+  isLoading: boolean;
+  error: string | null;
+  pagesize: number;
+  currentPage: number;
+  totalRows: number;
 }
- 
-export const initialState: counterstore  = {
-    greeting: "hi"
-};
 
-const _counterReducer = createReducer(
+export const adapter: EntityAdapter<Product> = createEntityAdapter<Product>();
+
+export const initialState: ProductState = adapter.getInitialState({
+  isLoading: true,
+  error: null,
+  pagesize : 0,
+  currentPage : 0,
+  totalRows : 0,
+});
+
+export const Product_reducer = createReducer(
   initialState,
-  on(ShowGreeting, (state) => ({...state,
-    greeting: "hello world"
-})),
-  on(decrement, (state) => ({...state,})),
-
-
-  on(ShowDefaltGreeting, (state) => ({...state,
-        greeting: initialState.greeting
-})),
+  on(ProductActions.get_All_Products,
+    (state, action) => adapter.setAll(action.get_all_products, {
+        ...state,
+        isLoading: false,
+        totalRows: action.totalRows
+    })
+  ),
+  on(ProductActions.Load_All_Products,
+    (state, action) => adapter.setAll([], {
+      ...state,
+      isLoading: true,
+      currentPage: action.CurentPage,
+      pagesize: action.pageSize,
+    })
+  )
 );
 
-export const selectGreeting= (state: counterstore) => state.greeting;
-
- 
-export function counterReducer(state: counterstore | undefined, action: Action) {
-  return _counterReducer(state, action);
-}
+export const {
+  selectIds,
+  selectEntities,
+  selectAll,
+  selectTotal,
+} = adapter.getSelectors();

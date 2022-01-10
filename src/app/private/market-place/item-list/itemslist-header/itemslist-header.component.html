@@ -6,26 +6,8 @@
             </button>        
         </div>
         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="gappx" class="item-head">
-            <div class="pl-2">
-                <button mat-button class="chips-btn">Active Play & Physical Education</button>
-            </div>
-            <div class="pl-2">
-                <button mat-button class="chips-btn">Arts & Crafts</button>
-            </div>
-            <div class="pl-2">
-                <button mat-button class="chips-btn">Curriculum</button>
-            </div>
-            <div class="pl-2">
-                <button mat-button class="chips-btn">Teachers Resources</button>
-            </div>
-            <div class="pl-2">
-                <button mat-button class="chips-btn">Teachers Resources</button>
-            </div>
-            <div class="pl-2">
-                <button mat-button class="chips-btn">Furniture & Equipment</button>
-            </div>
-            <div class="pl-2">
-                <button mat-button class="chips-btn">School Supplies</button>
+            <div class="pl-2" *ngFor="let category of categorys$ | async">
+                <button mat-button class="chips-btn">{{category.name}}</button>
             </div>
         </div>
         <div class="center pl-2">
