@@ -34,10 +34,9 @@
             </mat-expansion-panel-header>
             <mat-radio-group aria-label="Select an option">
                 <div fxLayout="row wrap">
-                    <div fxFlex.xs="50" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50" *ngFor="let brand of brands">
-                        <mat-radio-button class="brand">
-                            <!-- [value]="allbran.id" (change)="onChange($event)" -->
-                            {{brand}}
+                    <div fxFlex.xs="50" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50" *ngFor="let brand of brands | async">
+                        <mat-radio-button class="brand" [value]="brand.id" (change)="onChange($event)">
+                            {{brand.name}}
                         </mat-radio-button>
                     </div>
                 </div>

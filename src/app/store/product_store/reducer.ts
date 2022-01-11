@@ -1,6 +1,6 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
-import { Product } from '../services/market_services/market_modal';
+import { Product } from '../../services/market_services/market_modal';
 import * as ProductActions from './actions';
 
 export const productsFeatureKey = 'products';
@@ -10,6 +10,11 @@ export interface ProductState extends EntityState<Product> {
   error: string | null;
   pagesize: number;
   currentPage: number;
+  brandid: number;
+  colorid: number;
+  minimumPrice: number;
+  maximumPrice: number;
+  categorysid: number;
   totalRows: number;
 }
 
@@ -21,6 +26,11 @@ export const initialState: ProductState = adapter.getInitialState({
   pagesize : 0,
   currentPage : 0,
   totalRows : 0,
+  brandid: 1,
+  colorid: 1,
+  minimumPrice: 50,
+  maximumPrice: 100,
+  categorysid: 1
 });
 
 export const Product_reducer = createReducer(
@@ -38,6 +48,11 @@ export const Product_reducer = createReducer(
       isLoading: true,
       currentPage: action.CurentPage,
       pagesize: action.pageSize,
+      brandid: action.Brandsid,
+      colorid: action.Colorsid,
+      minimumPrice: action.MinimumPrice,
+      maximumPrice: action.MaximumPrice,
+      categorysid: action.Categoryid
     })
   )
 );

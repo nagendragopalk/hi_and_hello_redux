@@ -7,7 +7,7 @@ export class CommonApiService {
 
   public readonly API_ENDPOINT: string = `http://192.168.1.3:3000`;
 
-  public readonly ALL_CATEGORIES: string = this.API_ENDPOINT + `/brand/minilist`;
+  public readonly ALL_CATEGORIES: string = this.API_ENDPOINT + `/category/minilist`;
 
   public readonly ALL_BRANDS: string = this.API_ENDPOINT + `/brand/minilist`;
 

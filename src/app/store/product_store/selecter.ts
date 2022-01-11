@@ -2,14 +2,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import * as fromStore from './reducer';
 
-import * as categoryStore from './category/category_reducer';
-// import * as brandStore from './category/brand_reducer';
-
-const categorySelector = createFeatureSelector<categoryStore.CategoryState>(categoryStore.categorysFeatureKey);
-
 const productsSelector = createFeatureSelector<fromStore.ProductState>(fromStore.productsFeatureKey);
-
-// const brandsSelector =  createFeatureSelector<brandStore.BrandState>(brandStore.brandsFeatureKey);
 
 export const isLoading = createSelector(productsSelector, (state: fromStore.ProductState) => state.isLoading);
 
@@ -21,10 +14,18 @@ export const pageCountSize = createSelector(productsSelector,  (state: fromStore
 
 export const currentPageCount = createSelector(productsSelector,  (state: fromStore.ProductState) => state.currentPage);
 
+export const brandCountId = createSelector(productsSelector,  (state: fromStore.ProductState) => state.brandid);
+
+export const colorcountId = createSelector(productsSelector,  (state: fromStore.ProductState) => state.colorid);
+
+export const categoryCountId = createSelector(productsSelector,  (state: fromStore.ProductState) => state.categorysid);
+
+export const MaxCountPrice = createSelector(productsSelector,  (state: fromStore.ProductState) => state.maximumPrice);
+
+export const MiniCountPrice = createSelector(productsSelector,  (state: fromStore.ProductState) => state.minimumPrice);
+
 export const totalCount = createSelector(productsSelector,  (state: fromStore.ProductState) => state.totalRows);
 
-export const catogory$ = createSelector(categorySelector, categoryStore.selectAll);
 
-// export const brands$ = createSelector(brandsSelector, brandStore.selectAll);
 
 

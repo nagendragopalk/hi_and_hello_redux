@@ -1,7 +1,7 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import { Category } from 'src/app/services/market_services/market_modal';
-import * as CategoryActions from '../actions';
+import * as CategoryActions from './category_actions';
 
 export const categorysFeatureKey = 'category';
 

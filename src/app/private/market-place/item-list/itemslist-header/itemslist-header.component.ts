@@ -3,9 +3,9 @@ import {MatDialog} from '@angular/material/dialog';
 import { ItemShortPopupComponent } from './item-short-popup/item-short-popup.component';
 import { ItemFilterPopupComponent } from './item-filter-popup/item-filter-popup.component'
 import { Store } from '@ngrx/store';
-import * as fromActions from '../../../../store/actions';
+import * as fromActions from '../../../../store/category/category_actions';
 import * as categoryStore from '../../../../store/category/category_reducer';
-import * as fromSelector from '../../../../store/selecter';
+import * as fromSelector from '../../../../store/category/category_selecter';
 import { Observable } from 'rxjs';
 import { Category } from 'src/app/services/market_services/market_modal';
 @Component({

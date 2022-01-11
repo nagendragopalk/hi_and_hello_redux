@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CommonApiService } from "../common.service";
-import { Brand, Category, ProductResponce } from "./market_modal";
+import { Brand, Category, Color, ProductResponce } from "./market_modal";
 @Injectable({
     providedIn: 'root'
 })
@@ -21,7 +21,12 @@ export class ProductService {
     getCategory(): Observable<Category[]> {
         return this.http.get<Category[]>(this.apiservices.ALL_CATEGORIES)
     }
+         
     getBrand(): Observable<Brand[]> {
         return this.http.get<Brand[]>(this.apiservices.ALL_BRANDS)
+    }
+
+    getColors(): Observable<Color[]> {
+        return this.http.get<Color[]>(this.apiservices.ALL_COLORS)
     }
 }
