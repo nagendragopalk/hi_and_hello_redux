@@ -60,4 +60,10 @@ export interface ProductResponce {
       firstName: string
       lastName: string
     }
+    export interface Price_mini_max {
+      id: number
+      name: string
+      min: number
+      max: number
+    }
     

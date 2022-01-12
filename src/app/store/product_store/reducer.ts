@@ -16,6 +16,7 @@ export interface ProductState extends EntityState<Product> {
   maximumPrice: number;
   categorysid: number;
   totalRows: number;
+  Id:number;
 }
 
 export const adapter: EntityAdapter<Product> = createEntityAdapter<Product>();
@@ -30,7 +31,8 @@ export const initialState: ProductState = adapter.getInitialState({
   colorid: 1,
   minimumPrice: 50,
   maximumPrice: 100,
-  categorysid: 1
+  categorysid: 1,
+  Id:0,
 });
 
 export const Product_reducer = createReducer(
@@ -53,6 +55,20 @@ export const Product_reducer = createReducer(
       minimumPrice: action.MinimumPrice,
       maximumPrice: action.MaximumPrice,
       categorysid: action.Categoryid
+    })
+  ),
+
+  on(ProductActions.get_All_Product_details,
+    (state, action) => (action.get_product_details, {
+        ...state,
+        isLoading: false,
+    })
+  ),
+  on(ProductActions.Load_Product_detailes,
+    (state, action) => adapter.setAll([], {
+      ...state,
+      isLoading: true,
+      Id: action.Id,
     })
   )
 );

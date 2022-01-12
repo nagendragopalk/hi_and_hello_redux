@@ -7,8 +7,8 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group">
-                <mat-radio-button class="brand" *ngFor="let season of seasons" [value]="season">
-                    {{season}}
+                <mat-radio-button class="brand" *ngFor="let season of seasons | async" [value]="season.id" (change)="onChange($event)">
+                    {{season.name}}
                 </mat-radio-button>
                 <div fxLayout="row" fxLayoutAlign="center center">
                     <div class="filter-input">
@@ -20,7 +20,6 @@
                     <div class="filter-input">
                         <button class="list-btn">Go</button>
                     </div>
-                    
                 </div>
             </mat-radio-group>
         </mat-expansion-panel>
@@ -52,15 +51,10 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <mat-radio-group aria-label="Select an option">
-                <div class="row">
-                    <div class="col-6">
-                        <mat-radio-button class="brand" *ngFor="let colorlist of colorlists" [value]="colorlist">
-                            {{colorlist}}
-                        </mat-radio-button>
-                    </div>
-                    <div class="col-6">
-                        <mat-radio-button class="brand" *ngFor="let color of colors" [value]="color">
-                            {{color}}
+                <div fxLayout="row wrap">
+                    <div fxFlex.xs="50" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50" *ngFor="let color of colors | async">
+                        <mat-radio-button class="brand" [value]="color.id" (change)="onChange($event)">
+                            {{color.name}}
                         </mat-radio-button>
                     </div>
                 </div>

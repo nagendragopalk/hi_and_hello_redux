@@ -1,15 +1,23 @@
 import { ActionReducerMap } from "@ngrx/store";
 import * as fromProduct from './product_store/reducer';
 import * as fromCategory from './category/category_reducer';
-import * as fromfliter from './filter_store/filter_reducer';
+import * as frombrand from './filter_store/brand_store/brand_reducer';
+import * as fromcolor from './filter_store/color_store/color_reducer';
+import * as fromprice from './filter_store/pricefilter_store/price_reducer';
+
 interface AppState {
   productState: fromProduct.ProductState;
   categoryState: fromCategory.CategoryState;
-  fliterState: fromfliter.FilterState
+  brandsState: frombrand.BrandState;
+  colorState: fromcolor.ColorState;
+  priceState: fromprice.PriceState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
     productState: fromProduct.Product_reducer,
     categoryState: fromCategory.category_reducer,
-    fliterState: fromfliter.filter_reducer,
+    brandsState: frombrand.brand_reducer,
+    colorState: fromcolor.color_reducer,
+    priceState: fromprice.price_reducer,
+
 };

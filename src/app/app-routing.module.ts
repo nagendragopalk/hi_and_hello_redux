@@ -52,7 +52,7 @@ const routes: Routes = [
 
   { path:'market-place', component: MarketPlaceComponent },
 
-  { path:'item-selected', component: ItemSelectedComponent },
+  { path:'item-selected/:id', component: ItemSelectedComponent },
 
   { path:'cart-items', component: CartItemsComponent },
 

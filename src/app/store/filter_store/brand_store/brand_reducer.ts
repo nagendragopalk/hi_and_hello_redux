@@ -1,23 +1,23 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import { Brand } from 'src/app/services/market_services/market_modal';
-import * as filterActions from './filter_actions';
+import * as filterActions from './brand_actions';
 
-export const FilterFeatureKey = 'flitter_data';
+export const BrandFeatureKey = 'flitter_data';
 
-export interface FilterState extends EntityState<Brand> {
+export interface BrandState extends EntityState<Brand> {
   isLoading: boolean;
   error: string | null;
 }
 
 export const adapter: EntityAdapter<Brand> = createEntityAdapter<Brand>();
 
-export const initialState: FilterState = adapter.getInitialState({
+export const initialState: BrandState = adapter.getInitialState({
   isLoading: true,
   error: null,
 });
 
-export const filter_reducer = createReducer(
+export const brand_reducer = createReducer(
   initialState,
   on(filterActions.get_All_Brands,
     (state, action) => adapter.setAll(action.get_brands, {

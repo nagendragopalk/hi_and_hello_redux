@@ -138,12 +138,16 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import * as fromProduct from './store/product_store/reducer';
 import * as fromCategory from './store/category/category_reducer';
-import * as fromfliter from './store/filter_store/filter_reducer';
+import * as frombrands from './store/filter_store/brand_store/brand_reducer';
+import * as fromColor from './store/filter_store/color_store/color_reducer';
+import * as fromprices from './store/filter_store/pricefilter_store/price_reducer';
 import { environment } from 'src/environments/environment';
 import { Product_Effects } from './store/product_store/effect';
 import { reducers } from './store';
 import { Category_Effects } from './store/category/category_effect';
-import { Filter_Effects } from './store/filter_store/filter_effect';
+import { Brand_Effects } from './store/filter_store/brand_store/brand_effect';
+import { Color_Effects } from './store/filter_store/color_store/color_effect';
+import { Price_Effects } from './store/filter_store/pricefilter_store/price_effect';
 // import * as formBrand from './store/category/brand_reducer';
 
 @NgModule({
@@ -286,8 +290,10 @@ import { Filter_Effects } from './store/filter_store/filter_effect';
     StoreDevtoolsModule.instrument({ maxAge: 75, logOnly: environment.production }),
     StoreModule.forFeature(fromProduct.productsFeatureKey, fromProduct.Product_reducer),
     StoreModule.forFeature(fromCategory.categorysFeatureKey, fromCategory.category_reducer),
-    StoreModule.forFeature(fromfliter.FilterFeatureKey, fromfliter.filter_reducer),
-    EffectsModule.forRoot([Product_Effects, Category_Effects, Filter_Effects])
+    StoreModule.forFeature(frombrands.BrandFeatureKey, frombrands.brand_reducer),
+    StoreModule.forFeature(fromColor.ColorFeatureKey, fromColor.color_reducer),
+    StoreModule.forFeature(fromprices.PriceFeatureKey, fromprices.price_reducer),
+    EffectsModule.forRoot([Product_Effects, Category_Effects, Brand_Effects, Color_Effects, Price_Effects])
   ],
   providers: [
     MatDatepickerModule,

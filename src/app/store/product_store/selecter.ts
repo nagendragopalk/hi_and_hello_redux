@@ -26,6 +26,9 @@ export const MiniCountPrice = createSelector(productsSelector,  (state: fromStor
 
 export const totalCount = createSelector(productsSelector,  (state: fromStore.ProductState) => state.totalRows);
 
+export const getdetails$ = createSelector(productsSelector,  fromStore.selectAll);
+
+
 
 
 
