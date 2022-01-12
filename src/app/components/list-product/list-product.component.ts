@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as fromStore from '../../store/product_store/reducer';
 import * as fromAction from '../../store/product_store/actions';
+import * as fromSelect from '../../store/product_store/selecter';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
@@ -20,7 +21,7 @@ export class ListProductComponent implements OnInit {
   @Output() selectedChange = new EventEmitter<boolean>();
   imgurl = "http://192.168.1.3:3000/images/products/";
 
-  hero$: Observable<Product>;
+  hero$: Observable<Product[]>;
   Id: number;
 
   constructor(
@@ -34,11 +35,16 @@ export class ListProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id')!;
 
-    this.hero$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this.store.dispatch(fromAction.Load_Product_detailes(params.get()!)))
-    );
+    this.hero$ = this.store.select(fromSelect.getdetails$);
+    console.log(this.hero$)
+
+
+    // this.hero$ = this.route.paramMap.pipe(
+    //   switchMap((params: ParamMap) =>
+    //     this.store.dispatch(fromAction.Load_Product_detailes(params.get('id')!)))
+    // );
 
   }
 
