@@ -34,7 +34,7 @@ export class ProductService {
         return this.http.get<Price_mini_max[]>(this.apiservices.ALL_Price)
     }
 
-    get_prod_details(Id: any): Observable<Product>{
-        return this.http.get<Product>(`${this.apiservices.List_All_Products}/${Id}`)
+    get_prod_details(id : any): Observable<Product>{
+        return this.http.get<Product>(`${this.apiservices.List_All_Products}/${id}`)
     }
 }

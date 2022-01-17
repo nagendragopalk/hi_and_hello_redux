@@ -21,13 +21,13 @@ export class ListProductComponent implements OnInit {
   @Output() selectedChange = new EventEmitter<boolean>();
   imgurl = "http://192.168.1.3:3000/images/products/";
 
-  hero$: Observable<Product[]>;
-  Id: number;
+  // hero$: Observable<Product[]>;
+  // Id: number;
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
-    private store: Store<fromStore.ProductState>  ) { }
+    // private store: Store<fromStore.ProductState>  
+    ) { }
 
   public toggleSelected() {
     this.selected = !this.selected;
@@ -35,17 +35,6 @@ export class ListProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id')!;
-
-    this.hero$ = this.store.select(fromSelect.getdetails$);
-    console.log(this.hero$)
-
-
-    // this.hero$ = this.route.paramMap.pipe(
-    //   switchMap((params: ParamMap) =>
-    //     this.store.dispatch(fromAction.Load_Product_detailes(params.get('id')!)))
-    // );
-
   }
 
 }

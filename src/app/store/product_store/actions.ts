@@ -20,9 +20,9 @@ export const get_All_Products = createAction(
 
   export const Load_Product_detailes = createAction(
     '[Product/API] Request Load Products',
-    props<{ Id: number; }>()
+    props<{ id: any; }>()
   );
-export const get_All_Product_details = createAction(
+export const get_Product_details = createAction(
     '[Product/API] Load Products',
-    props<{ get_product_details: Product, }>()
+    props<{ get_product: Product,}>()
   );

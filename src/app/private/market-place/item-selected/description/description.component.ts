@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Product } from 'src/app/services/market_services/market_modal';
 
 export interface ImgSelect{
   id: number;
@@ -14,12 +15,14 @@ const ImgInfo: ImgSelect[] = [
 @Component({
   selector: 'app-description',
   templateUrl: './description.component.html',
-  styleUrls: ['./description.component.scss']
+  styleUrls: ['./description.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DescriptionComponent implements OnInit {
 
   imgDatas = ImgInfo;
   displayedImg = 0;
+  @Input() ProductDatas : Product;
 
   @Input() selected: boolean;
   @Output() selectedChange = new EventEmitter<boolean>();
@@ -27,6 +30,7 @@ export class DescriptionComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void { 
+    console.log(this.ProductDatas)
   }
   public toggleSelected() {
     this.selected = !this.selected;

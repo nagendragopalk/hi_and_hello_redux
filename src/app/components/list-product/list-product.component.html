@@ -31,7 +31,7 @@
         </div>
         <div fxFlex="10" fxLayout="column" fxLayoutAlign="flex-start center">
             <div class="titles">
-                <span class="price">{{listProduct.price}} FB</span>
+                <span class="price">{{listProduct.price}} {{listProduct.id}}FB</span>
             </div>    
         </div>
         <div fxFlex="15" fxLayout="column" fxLayoutAlign="flex-start center">
@@ -41,7 +41,7 @@
                 </button>
             </div>
             <div class="subtitles dec">
-                <button mat-button  class="buy" routerLink="/item-selected">
+                <button mat-button  class="buy" [routerLink]="['/item-selected/'+listProduct.id]">
                     Buy                
                 </button>
             </div>    
@@ -103,11 +103,11 @@
                     </div>
     
                     <div>
-                        <span class="item-price">{{listProduct.price}} FB</span>
+                        <span class="item-price">{{listProduct.id}} FB</span>
                      </div>
     
                      <div>
-                        <button mat-button class="item-btn" [routerLink]="['/item-selected', listProduct.id]">Buy</button>
+                        <button mat-button class="item-btn" [routerLink]="['/item-selected'+listProduct.id]">Buy</button>
                      </div>
                 </div>
             </div>
