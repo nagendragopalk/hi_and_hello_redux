@@ -8,7 +8,7 @@ import { Product } from 'src/app/services/market_services/market_modal';
 })
 export class OptionsComponent implements OnInit {
 
-  @Input() ProductData : Product;
+  @Input() option_data : Product;
 
   constructor() { }
 

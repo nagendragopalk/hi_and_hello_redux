@@ -13,16 +13,20 @@ export const Load_All_Products = createAction(
             Categoryid: number;
           }>()
   );
-export const get_All_Products = createAction(
-    '[Product/API] Load Products',
-    props<{ get_all_products: Product[], totalRows: number}>()
-  );
+  export const get_All_Products = createAction(
+      '[Product/API] Load Products',
+      props<{ get_all_products: Product[], totalRows: number}>()
+    );
 
   export const Load_Product_detailes = createAction(
     '[Product/API] Request Load Products',
     props<{ id: any; }>()
   );
-export const get_Product_details = createAction(
-    '[Product/API] Load Products',
-    props<{ get_product: Product,}>()
+  export const get_Product_details = createAction(
+      '[Product/API] Product',
+      props<{ get_product: Product}>()
+    );
+  export const addProduct = createAction(
+    '[Product/API] Add Product',
+    props<{ add_product_cart: Product }>()
   );

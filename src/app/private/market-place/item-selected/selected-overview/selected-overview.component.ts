@@ -8,7 +8,7 @@ import { Product } from 'src/app/services/market_services/market_modal';
 })
 export class SelectedOverviewComponent implements OnInit {
 
-  @Input() ProductData : Product;
+  @Input() review_Data : Product;
 
   constructor() { }
 

@@ -1,12 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { cart_Item } from 'src/app/services/market_services/cart_module';
 
-export interface PeriodicElement {
-  item: string;
-  price: number;
-  quantity: string;
-  total: number;
-
-}
 
 @Component({
   selector: 'app-add-to-cart-detls',
@@ -15,7 +9,7 @@ export interface PeriodicElement {
 })
 
 export class AddToCartDetlsComponent implements OnInit {
-  @Input() cart_details : PeriodicElement;
+  @Input() cart_details : cart_Item;
   
   public counter: number = 1;
   
@@ -31,6 +25,7 @@ export class AddToCartDetlsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.cart_details.Product.name)
   }
 
 }

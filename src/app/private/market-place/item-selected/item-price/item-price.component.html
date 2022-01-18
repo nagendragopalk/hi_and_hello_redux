@@ -4,7 +4,7 @@
         <mat-card style="width: 250px; height: 300px; border-radius: 0px;" class="center" class="carts">
             <div class="pl-5">
                 <div class="pt-3 pb-3">
-                    <span class="family title">15 FB</span>
+                    <span class="family title">{{price_data.price}} FB</span>
                 </div>
                 <div fxLayout="row" class="bottom">
                     <div class="center">
@@ -37,7 +37,8 @@
                     </div>
                 </div>
                 <div class="pb-3">
-                    <button mat-button class="family cart" routerLink="/cart-items"> 
+                    <button mat-button class="family cart" routerLink="/cart-items">
+                    <!-- (click)="addProductCart(price_data)" -->
                     <!-- routerLink="/cart-items" -->
                         Add To Cart
                     </button>

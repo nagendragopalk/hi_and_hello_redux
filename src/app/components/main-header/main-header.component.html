@@ -32,8 +32,9 @@
                 </button>
                 <a class="head-text pr-2" routerLink="/favorites" routerLinkActive="active">Favorite</a>
     
-                <button mat-icon-button aria-label="">
+                <button mat-icon-button aria-label="" class="ml-xs overflow-visible">
                     <mat-icon class="icons-head" routerLink="/cart-items" routerLinkActive="active">shopping_cart</mat-icon>
+                    <!-- <span class="notification-label" *ngIf="cartCount$ | async as count" >{{ (count > 0) ? count : '' }}</span> -->
                 </button>
                 <a class="head-text pr-3" routerLink="/cart-items" routerLinkActive="active">Cart</a>
     

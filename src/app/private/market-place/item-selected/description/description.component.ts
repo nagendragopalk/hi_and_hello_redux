@@ -22,7 +22,7 @@ export class DescriptionComponent implements OnInit {
 
   imgDatas = ImgInfo;
   displayedImg = 0;
-  @Input() ProductDatas : Product;
+  @Input() description_data : Product;
 
   @Input() selected: boolean;
   @Output() selectedChange = new EventEmitter<boolean>();
@@ -30,7 +30,6 @@ export class DescriptionComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void { 
-    console.log(this.ProductDatas)
   }
   public toggleSelected() {
     this.selected = !this.selected;

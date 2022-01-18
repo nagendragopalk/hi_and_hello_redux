@@ -42,7 +42,9 @@ export class Product_Effects {
   getProduct_details$ = createEffect(() => this.actions$.pipe(
     ofType(Load_Product_detailes),
     switchMap(action => this.productServices.get_prod_details(action.id).pipe(
-      map (data => get_Product_details({ get_product: data}))
+      map (data =>{ 
+        // console.log (data)
+        return get_Product_details({ get_product: data})})
       ))
     )
   );

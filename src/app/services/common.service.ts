@@ -17,7 +17,9 @@ export class CommonApiService {
 
   public readonly List_All_Products: string = this.API_ENDPOINT + `/product`;
 
-  // public readonly Product_Data: string = this.API_ENDPOINT + `/product/`;
+  public readonly Cart_Data: string = this.API_ENDPOINT + `/cart`;
+
+  public readonly Add_Cart: string = this.API_ENDPOINT + `/cart/add`;
 
   constructor() { }
 }

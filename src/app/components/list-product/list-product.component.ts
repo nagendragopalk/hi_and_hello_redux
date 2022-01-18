@@ -25,7 +25,7 @@ export class ListProductComponent implements OnInit {
   // Id: number;
 
   constructor(
-    private router: Router,
+    // private router: Router,
     // private store: Store<fromStore.ProductState>  
     ) { }
 
@@ -35,6 +35,7 @@ export class ListProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
 }

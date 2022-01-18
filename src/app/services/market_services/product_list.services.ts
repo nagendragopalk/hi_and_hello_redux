@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CommonApiService } from "../common.service";
+import { CartResponce } from "./cart_module";
 import { Brand, Category, Color, Price_mini_max, Product, ProductResponce } from "./market_modal";
 @Injectable({
     providedIn: 'root'
@@ -37,4 +38,9 @@ export class ProductService {
     get_prod_details(id : any): Observable<Product>{
         return this.http.get<Product>(`${this.apiservices.List_All_Products}/${id}`)
     }
+
+    cart_data(): Observable<CartResponce>{
+        return this.http.get<CartResponce>(this.apiservices.Cart_Data)
+    }
+
 }

@@ -17,7 +17,7 @@ export interface ProductState extends EntityState<Product> {
   categorysid: number;
   totalRows: number;
   id:number;
-  product: Product;
+  product: Product | null;
 }
 
 export const adapter: EntityAdapter<Product> = createEntityAdapter<Product>();
@@ -59,22 +59,25 @@ export const Product_reducer = createReducer(
       categorysid: action.Categoryid
     })
   ),
-
-  on(ProductActions.get_Product_details,
-    (state, action) => ({
-        ...state,
-        isLoading: false,
-        product: action.get_product,
-    })
-  ),
   on(ProductActions.Load_Product_detailes,
     (state, action) => ({
       ...state,
       isLoading: true,
-      // id: action.id,
-      // product: action.id
     })
-  )
+  ),
+  on(ProductActions.get_Product_details,
+    (state, action) =>  {
+    return {
+      ...state,
+        isLoading: false,
+        product: action.get_product,
+
+    }
+  }
+),
+on(ProductActions.addProduct,
+  (state, action) => adapter.addOne(action.add_product_cart, state)
+),
 );
 
 export const {

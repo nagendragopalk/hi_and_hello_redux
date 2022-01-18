@@ -24,8 +24,8 @@
             </div>
         </div>
         <hr fxHide fxShow.gt-sm>
-        <div *ngFor="let dataSource of dataSources">
-            <app-add-to-cart-detls [cart_details] = dataSource></app-add-to-cart-detls>
+        <div *ngFor="let cart_item of cart_item$ | async">
+            <app-add-to-cart-detls [cart_details] = cart_item></app-add-to-cart-detls>
         </div>
         <div>
             <div fxLayout="row wrap">

@@ -149,6 +149,7 @@ import { Brand_Effects } from './store/filter_store/brand_store/brand_effect';
 import { Color_Effects } from './store/filter_store/color_store/color_effect';
 import { Price_Effects } from './store/filter_store/pricefilter_store/price_effect';
 // import * as formBrand from './store/category/brand_reducer';
+import * as fromcart from './store/add_item_to_cart/cart_reducer';
 
 @NgModule({
   declarations: [
@@ -293,6 +294,7 @@ import { Price_Effects } from './store/filter_store/pricefilter_store/price_effe
     StoreModule.forFeature(frombrands.BrandFeatureKey, frombrands.brand_reducer),
     StoreModule.forFeature(fromColor.ColorFeatureKey, fromColor.color_reducer),
     StoreModule.forFeature(fromprices.PriceFeatureKey, fromprices.price_reducer),
+    StoreModule.forFeature(fromcart.cart_item_FeatureKey, fromcart.item_cart_reducer),
     EffectsModule.forRoot([Product_Effects, Category_Effects, Brand_Effects, Color_Effects, Price_Effects])
   ],
   providers: [

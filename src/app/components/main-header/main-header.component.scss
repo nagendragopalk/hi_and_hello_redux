@@ -139,3 +139,18 @@ a.active {
   height: 60px;
   font-size: 12px;
 }
+.notification-label {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 13px;
+  border-radius: 50%;
+  width: 13px;
+  height: 13px;
+  background-color: #f44336;
+  border: 4px solid #f44336;
+  color: white;
+  text-align: center;
+}
