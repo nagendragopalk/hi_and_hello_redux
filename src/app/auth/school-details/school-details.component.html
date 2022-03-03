@@ -12,49 +12,66 @@
                                 details below. We will send a 6-digit code to verify.
                             </mat-card-title>
                         </div>
-                        <div class="example-container">
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Search School State</mat-label>
-                                <input matInput placeholder="School State"  >
-                                <!-- <mat-error *ngIf="firstName.invalid">{{getnameErrorMessage()}}</mat-error>[formControl]="firstName" -->
-                                <button mat-icon-button matSuffix>
-                                    <mat-icon class="serc">search</mat-icon>
-                                </button>
-                            </mat-form-field>
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Search School Name</mat-label>
-                                <input matInput placeholder="School Name"  >
-                                <!-- <mat-error *ngIf="firstName.invalid">{{getnameErrorMessage()}}</mat-error>[formControl]="firstName" -->
-                                <button mat-icon-button matSuffix>
-                                    <mat-icon  class="serc">search</mat-icon>
-                                </button>
-                            </mat-form-field>
-                            <mat-form-field class="example-full-width">
-                                <mat-label>School Provided Email Address</mat-label>
-                                <input matInput placeholder="pat@example.com"  >
-                                <!-- <mat-error *ngIf="firstName.invalid">{{getnameErrorMessage()}}</mat-error>[formControl]="firstName" -->
-                            </mat-form-field>
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Principal First Name</mat-label>
-                                <input matInput placeholder="First Name" >
-                                <!-- <mat-error *ngIf="firstName.invalid"> [formControl]="firstName"{{getnameErrorMessage()}}</mat-error> -->
-                            </mat-form-field>
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Principal Last Name</mat-label>
-                                <input matInput placeholder="Last Name" >
-                                <!-- <mat-error *ngIf="lastName.invalid"> [formControl]="lastName"{{getlastnameErrorMessage()}}</mat-error> -->
-                            </mat-form-field>
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Principal Email Address</mat-label>
-                                <input matInput placeholder="Email Address" >
-                            </mat-form-field>
-                        </div>
-                        <!-- <div class="center">
-                            <button mat-raised-button [routerLink]="['/school-verify']" routerLinkActive="router-link-active" class="but">SUBMIT</button>
-                        </div> -->
-                        <div *ngFor="let btn_info of btn_infos" class="pl-5 pr-5" style="padding-top: 13px;">
-                            <app-buttons-btn  [btn_Data] = "btn_info" [routerLink]="['/school-verify']" ></app-buttons-btn>
-                        </div>
+                        <form [formGroup]="schoolDetails" (ngSubmit)="onClickSubmit(schoolDetails.value)">
+                            <div class="example-container">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Search School State</mat-label>
+                                    <input type="text"
+                                        placeholder="School State"
+                                        formControlName="schoolState"
+                                        matInput
+                                        [matAutocomplete]="auto">
+                                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                                    <mat-option *ngFor="let option of options" [value]="option">
+                                        {{option}}
+                                    </mat-option>
+                                    </mat-autocomplete>
+                                    <button mat-icon-button matSuffix>
+                                        <mat-icon class="serc">search</mat-icon>
+                                    </button>
+                                </mat-form-field>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Search School Name</mat-label>
+                                    <input  type="text" placeholder="School Name"
+                                    formControlName="schoolName"
+                                    matInput
+                                    [matAutocomplete]="auto">
+                                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                                        <mat-option *ngFor="let option of options" [value]="option">
+                                            {{option}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                    <button mat-icon-button matSuffix>
+                                        <mat-icon  class="serc">search</mat-icon>
+                                    </button>
+                                </mat-form-field>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>School Provided Email Address</mat-label>
+                                    <input matInput  placeholder="pat@example.com" type="email" formControlName="SchoolEmail">
+                                    <mat-error *ngIf="myError('SchoolEmail', 'required')">You Must Enter School Email Address</mat-error>
+                                    <mat-error *ngIf="myError('SchoolEmail', 'email')">Invalid Email Address</mat-error>
+                                </mat-form-field>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Principal First Name</mat-label>
+                                    <input matInput placeholder="First Name" type="text" formControlName="principalName">
+                                    <mat-error *ngIf="myError('principalName', 'required')"> You Must Enter Principal First Name</mat-error>
+                                </mat-form-field>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Principal Last Name</mat-label>
+                                    <input matInput placeholder="Last Name" type="text" formControlName="principalLastname">
+                                    <mat-error *ngIf="myError('principalLastname', 'required')"> You Must Enter Principal Last Name</mat-error>
+                                </mat-form-field>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Principal Email Address</mat-label>
+                                    <input matInput placeholder="Email Address" type="email" formControlName="principalEmail">
+                                    <mat-error *ngIf="myError('principalLastname', 'required')">Enter Principal Email Address</mat-error>
+                                    <mat-error *ngIf="myError('SchoolEmail', 'email')"> You Must Invalid Email Address</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="pl-5 pr-5" style="padding-top: 13px;">
+                                <button mat-button [disabled] = "!schoolDetails.valid" routerLink="/school-verify" class="auth_btn" type="submit">SUBMIT</button>
+                            </div>
+                        </form>
                     </div>
                 </mat-card>
             </div>

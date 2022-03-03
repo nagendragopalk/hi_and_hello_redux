@@ -1,4 +1,3 @@
-<!-- (click)="toggle_nameShow()" -->
 <div >
     <div class="pt-4 pb-3">
         <div fxLayout="row warp" class="p-2">
@@ -20,7 +19,7 @@
                 </mat-card-content>
                 <mat-card-content style="display: flex; justify-content: center; text-align: center;">
                     <div>
-                        <button mat-button class="sub" (click)="googleclsDialog()">Import Google Classroom <mat-icon class="inport-icon">group</mat-icon></button>
+                        <button mat-button class="sub" (click)="signInHangler()">Import Google Classroom <mat-icon class="inport-icon">group</mat-icon></button>
     
                         <button mat-button class="sub" (click)="addclsDialog()">Create Manually</button>
     
@@ -54,16 +53,12 @@
     <div class="desk-cls">
         <div fxLayout="row warp" fxLayoutAlign="space-between center" class="your-navbar">
             <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50">
-                <div fxLayout="row" fxLayoutAlign="start center" class="pt-3 pb-3">
-                    <div class="pl-2">
-                        <a href="#" class="cls-btn">Maths - 3 A</a>
-                    </div>
-                    <div class="pl-3">
-                        <a href="#" class="cls-btn ">English</a>
-                    </div>
-                    <div class="pl-3">
-                        <a href="#" class="cls-btn">Science</a>
-                    </div>
+                <div fxLayout="row" fxLayoutAlign="start center" class="pt-3">
+                    <a class="select">Maths - 3 A</a>
+  
+                    <a class="select">English</a>
+                           
+                    <a class="select">Science</a>
                 </div>
             </div>
             <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50">
@@ -83,8 +78,8 @@
     </div>
     <div class="mob-cls">
         <div fxLayout="row warp" fxLayoutAlign="space-between center" class="your-navbar">
-            <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50">
-                <div fxLayout="row" fxLayoutAlign="space-between center" class="pt-2 pb-2">
+            <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50" >
+                <div fxLayout="row" fxLayoutAlign="space-between center" class="pt-2">
                     <div>
                         <button mat-button class="cls-btns" (click)="reupdateDialog()">Class Options</button>
                     </div>
@@ -98,45 +93,66 @@
             </div>
             <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50">
                 <div fxLayout="row" fxLayoutAlign="space-between center" class="pt-2 pb-2">
-                    <div class="pl-2">
-                        <a href="#" class="cls-btn">Maths - 3 A</a>
-                    </div>
-                    <div>
-                        <a href="#" class="cls-btn ">English</a>
-                    </div>
-                    <div class="pr-2">
-                        <a href="#" class="cls-btn">Science</a>
-                    </div>
+                    <a class="select">Maths - 3 A</a>
+  
+                    <a class="select">English</a>
+                           
+                    <a class="select">Science</a>
                 </div>
             </div>
         </div>
     </div>
     
     <mat-card>
-        <div fxLayout="row warp">
-            <div fxFlex.xs="100" fxFlex.sm="35" fxFlex.md="35" fxFlex.lg="35" fxFlex.xl="35">
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="gappx">
+            <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="20" fxFlex.lg="20" fxFlex.xl="20">
                 <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="gappx">
-                    <div>
-                        <mat-form-field appearance="outline" class="search-main">
-                            <input matInput placeholder="Search" class="input-font ml-2">
-                            <button mat-icon-button aria-label="" matPrefix class="ml-2">
-                                <mat-icon class="input-icon">search</mat-icon>
-                            </button>
-                        </mat-form-field>
-                    </div>
-                    <!-- <div class="pl-3">
-                        <span class="your-stus">Total 20 Students</span>
-                    </div> -->
+                    <mat-form-field appearance="outline" class="search-main">
+                        <input matInput placeholder="Search" class="input-font ml-2">
+                        <button mat-icon-button aria-label="" matPrefix class="ml-2">
+                            <mat-icon class="input-icon">search</mat-icon>
+                        </button>
+                    </mat-form-field>
                 </div>
             </div>
-            <div fxFlex.xs="100" fxFlex.sm="65" fxFlex.md="65" fxFlex.lg="65" fxFlex.xl="65" class="check-stu">
-                <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="gappx">
-                    <div>
-                        <mat-checkbox class="your-stu"> Students on Frizzmo only</mat-checkbox>
+            <div fxHide fxShow.gt-sm fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="60" fxFlex.lg="60" fxFlex.xl="60" >
+                <div fxLayout="row" fxLayoutAlign="center center" class="pt-2 pb-3">
+                    <div> 
+                        <a class="alph">A</a>
+                        <a class="alph">B</a>
+                        <a class="alph">C</a>
+                        <a class="alph">D</a>
+                        <a class="alph">E</a>
+                        
+                        <a class="alph">F</a>
+                        <a class="alph">G</a>
+                        <a class="alph">H</a>
+                        <a class="alph">I</a>
+                        <a class="alph">J</a> 
+
+                        <a class="alph">K</a>
+                        <a class="alph">L</a>
+                        <a class="alph">M</a>
+                        <a class="alph">N</a>
+                        <a class="alph">O</a> 
+
+                        <a class="alph">P</a>
+                        <a class="alph">Q</a>
+                        <a class="alph">R</a>
+                        <a class="alph">S</a>
+                        <a class="alph">T</a> 
+
+                        <a class="alph">U</a>
+                        <a class="alph">V</a>
+                        <a class="alph">W</a>
+                        <a class="alph">X</a>
+
+                        <a class="alph">Y</a>
+                        <a class="alph">Z</a>
                     </div>
                 </div>
             </div>
-            <div fxFlex.xs="100" fxFlex.sm="65" fxFlex.md="65" fxFlex.lg="65" fxFlex.xl="65" class="check-stus">
+            <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="20" fxFlex.lg="20" fxFlex.xl="20">
                 <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="gappx">
                     <div>
                         <mat-checkbox class="your-stu"> Students on Frizzmo only</mat-checkbox>
@@ -144,35 +160,46 @@
                 </div>
             </div>
         </div>
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z0 demo-table">
-            <!-- Position Column -->
-            <ng-container matColumnDef="demo-icons">
-                <td mat-cell *matCellDef="let element">
-                    <button class="btns">
-                        <!-- <mat-icon>{{element.icons}}</mat-icon> -->
-                        <img src={{element.icons}}>
-                    </button>
-                </td>
-            </ng-container>
-            <!-- Name Column -->
-            <ng-container matColumnDef="demo-name">
-              <td mat-cell *matCellDef="let element">{{element.name}}<br><span class="your-sec-cls">Standard - 3 A</span></td>
-              <span>Standard - 3 A</span>
-            </ng-container>
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="demo-symbol">
-              <td mat-cell *matCellDef="let element"> ${{element.symbol}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="demo-item">
-                <td mat-cell *matCellDef="let element">
-                    <button mat-icon-button (click)="rewardclsDialog()">
-                        <mat-icon class="tab-icon">{{element.item}}</mat-icon>
-                    </button>
-                </td>
-              </ng-container>
-            <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> -->
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
+          <div>
+            <div>
+                <div fxHide fxShow.gt-sm fxLayout="row" fxLayoutAlign="start center" class="brdclass">
+                    <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="30" fxFlex.lg="30" fxFlex.xl="30">
+                        <div fxLayoutAlign="start center" class="pl-3">
+                            <a class="headtitle">Student </a>
+                        </div>
+                    </div>
+                    <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="20" fxFlex.lg="20" fxFlex.xl="20">
+                        <div fxLayoutAlign="end center" >
+                            <a class="headtitle" (click)="toggleSelected()">Total Contributed   
+                                <button mat-icon-button>
+                                    <mat-icon *ngIf="selected">keyboard_arrow_down</mat-icon> <mat-icon *ngIf="!selected" >keyboard_arrow_up</mat-icon>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="20" fxFlex.lg="20" fxFlex.xl="20">
+                        <div fxLayoutAlign="center center">
+                            <a class="headtitle">Number of Item Gifted</a>
+                        </div>
+                    </div>
+                    <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="20" fxFlex.lg="20" fxFlex.xl="20">
+                        <div fxLayoutAlign="center center">
+                            <a class="headtitle">Last Gift Status</a>
+                        </div>
+                    </div>
+                    <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="10" fxFlex.lg="10" fxFlex.xl="10">
+                        <div fxLayoutAlign="center center">
+                            <a class="headtitle">Gift Now</a>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div *ngFor="let dataSource of dataSources">
+                <app-student-list [studentClass] = "dataSource"></app-student-list>
+              </div>
+              <div class="pl-3 pt-3">
+                  <a  routerLink="/student-data" class="more">Show More</a>
+              </div>
+          </div>
     </mat-card>
 </div>

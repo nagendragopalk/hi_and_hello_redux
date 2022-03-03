@@ -7,12 +7,16 @@
 .rate{
     border: 1px solid #F5F5F5;
     border-radius: 5px;
-    width: 30px;
+    width: 50px;
     height: 20px;
+    padding-right: 10px;
     justify-content: center;
     align-items: center;
     display: flex;
     background-color: #F5F5F5;
+}
+.rateicon{
+    font-size: 12px;
 }
 .rates{
         font-size: 7px;

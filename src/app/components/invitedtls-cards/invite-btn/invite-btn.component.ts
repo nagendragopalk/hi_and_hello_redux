@@ -13,7 +13,7 @@ export class InviteBtnComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(InviteTechComponent, {
-      height: '600px',
+      height: '630px',
       width: '1000px',
     });
 

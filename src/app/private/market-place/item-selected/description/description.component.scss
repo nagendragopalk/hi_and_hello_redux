@@ -16,21 +16,6 @@ li{
     font-size: 12px;
     font-weight: 500;
 }
-// ul {
-//     list-style: none;
-//   }
-  
-//   ul li::before {
-//     content: "\2022";
-//     color: #B3B3B3;
-//     // font-weight: bold;
-//     // font-size: 40px;
-//     // display: inline-block; 
-//     font-family: "Montserrat";
-//     // width: 1em;
-//     margin-top: 1em;
-//     margin-left: -1em;
-//   }
 .dec{
     font-family: "Montserrat";
     font-size: 14px;
@@ -53,7 +38,12 @@ li{
     display: block;
 }
 
-
+.bord_img{
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+    display: flex;
+}
 .center{
     display: flex;
     justify-content: center;
@@ -104,7 +94,17 @@ li{
 .bottom{
     margin-bottom: 15px;
 }
-.select{
+// .select{
+//     border: 1px solid #F0F0F0;
+//     width: 80px;
+//     height: 70px;
+//     margin-bottom: 20px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+   
+// }
+.brd {
     border: 1px solid #F0F0F0;
     width: 80px;
     height: 70px;
@@ -113,14 +113,24 @@ li{
     align-items: center;
     justify-content: center;
 }
+.brd.active{
+    border: 3px solid #00AA75;
+    width: 80px;
+    height: 70px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .selects{
     border: 1px solid #F0F0F0;
     width: 300px;
     height: 340px;
 }
-.zom{
-    width: 250px;
-}
+// .zom{
+//     width: 250px;
+// }
 .zomin{
     width: 35px;
 }
@@ -131,9 +141,12 @@ li{
     margin-bottom: 10px;
     margin-top: 10px;
     margin-right: 10px;
-    mat-icon{
+    .icons-head{
         color: #D8D8D8;
-    }
+      }
+      .icons-heads{
+        color: #00AA75;
+      }
 }
 li{
     padding-top: 5px;
@@ -179,3 +192,63 @@ li{
         width: 200px;
     }
 }
+.icons-head{
+    color: #D8D8D8;
+  }
+  .icons-heads{
+    color: #00AA75;
+  }
+  #myresult{
+    z-index: 1000;
+    // background-color: #ffff;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+  .item {
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+//   .tile {
+//     min-height: 200px;
+//     background-color: #ccc;
+//     background-size: cover !important;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+//   }
+  
+  .myPoint {
+    list-style-type: none;
+    text-align: center;
+    padding: 12px;
+    margin: 0;
+    white-space: nowrap;
+    overflow: auto;
+    box-sizing: border-box;
+  }
+  .myPoint  li {
+      display: inline-block;
+      border-radius: 50%;
+      border: 1px solid #D8D8D8;
+      padding: 4px;
+      margin: 0 3px;
+      transition-timing-function: cubic-bezier(0.17, 0.67, 0.83, 0.67);
+      transition: 0.4s;
+  }
+  .myPoint  li.active {
+        background: #00AA75;
+        transform: scale(1.2);
+      }
+  

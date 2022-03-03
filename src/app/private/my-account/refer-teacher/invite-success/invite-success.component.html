@@ -13,7 +13,7 @@
                 </div>
                 <div class="pt-5 bord-btn">
                     <div *ngFor="let btn_info of btn_infos" >
-                        <app-buttons-btn  [btn_Data] = "btn_info"></app-buttons-btn>
+                        <app-buttons-btn  [btn_Data] = "btn_info" [routerLink]="['/dashboard']" routerLinkActive="router-link-active" ></app-buttons-btn>
                     </div>
                 </div>
             </div>

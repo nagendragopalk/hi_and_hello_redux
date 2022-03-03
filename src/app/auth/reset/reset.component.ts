@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { matchValidator } from '../Validation/confirmed.validator';
+
 export interface ButtonData {
   clsname: string;
   btn_name: string;
@@ -17,27 +20,38 @@ export class ResetComponent implements OnInit {
   btn_infos = ButtonInfo;
 
   hide = true;
-  
-  password = new FormControl('', [Validators.required]);
 
-  confirmpassword = new FormControl('', [Validators.required]);
-  getcpasswordErrorMessage() {
-    if (this.confirmpassword.hasError('required')) {
-      return 'You must enter password';
-    }
+  chide = true;
 
-    return this.confirmpassword.hasError('confirmpassword') ? 'Not a valid email' : '';
-  }
-  getpasswordErrorMessage() {
-    if (this.confirmpassword.hasError('required')) {
-      return 'You must enter password';
-    }
+  resetPassword: any  
 
-    return this.confirmpassword.hasError('confirmpassword') ? 'Not a valid email' : '';
-  }
-  constructor() { }
+  constructor(
+    private activatedRouter: ActivatedRoute,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
+    this.resetPassword = new FormGroup({
+      password: new FormControl('', [Validators.required,
+        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,20}'),
+        Validators.minLength(8),
+        Validators.maxLength(20),
+        matchValidator('confirmPassword', true)]),
+
+      confirm_password: new FormControl('', [
+        Validators.required,
+        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,20}'),
+        matchValidator('password')
+      ]),
+    })
   }
 
+  onClickSubmit(resetPassword: any){
+    console.log('reset password', resetPassword)
+    // this.router.navigate(['/'])
+  }
+
+  public myError = (controlName: string, errorName: string) =>{
+    return this.resetPassword.controls[controlName].hasError(errorName);
+    }
 }

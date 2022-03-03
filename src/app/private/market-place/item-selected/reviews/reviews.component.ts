@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Product } from 'src/app/services/market_services/market_modal';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-reviews',
@@ -7,8 +6,9 @@ import { Product } from 'src/app/services/market_services/market_modal';
   styleUrls: ['./reviews.component.scss']
 })
 export class ReviewsComponent implements OnInit {
-
-  @Input() ProductData : Product;
+  starRating = 0; 
+  starRating1 = 0; 
+  starRating2 = 0; 
 
   constructor() { }
 

@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { AddAddresUpdateComponent } from 'src/app/private/my-account/address-book/add-addres-update/add-addres-update.component';
+import { DeleteDialogComponent } from '../../delete-dialog/delete-dialog.component';
 
 export interface AddresList {
   name: string;
@@ -20,9 +23,20 @@ export class AddressBookCardComponent implements OnInit {
 
   @Input() address_details : AddresList;
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
+  openDialog() {
+    this.dialog.open(DeleteDialogComponent, {
+      width: '350px',
+    });
+  }
 
+  openDialogs() {
+    this.dialog.open(AddAddresUpdateComponent, {
+      height: '650px',
+      width: '900px',
+    });
+  }
 }

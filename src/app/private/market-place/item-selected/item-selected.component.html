@@ -5,7 +5,7 @@
     <mat-toolbar>
       <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="70" fxFlex.lg="70" fxFlex.xl="70">
         <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="gappx">
-          <a class="select" (click)="description()" routerLinkActive="active">Descriptopn</a>
+          <a class="select" (click)="description()" routerLinkActive="active">Description</a>
   
           <a class="select" (click)="options()" routerLinkActive="active">Options</a>
                  
@@ -20,13 +20,13 @@
     <div fxLayout="row wrap">
       <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md=70 fxFlex.lg="75" fxFlex.xl="75">
           <section id="description" class="pb-4">
-            <app-description [description_data] = productsid$></app-description>
+            <app-description></app-description>
           </section>
           <section id="options" class="pb-4">
-            <app-options [option_data] = productsid$></app-options>
+            <app-options></app-options>
           </section>
           <section id="overview" class="pb-4">
-            <app-selected-overview [review_Data] = productsid$></app-selected-overview>
+            <app-selected-overview></app-selected-overview>
           </section>
           <section id="reviews" class="pb-2">
             <app-reviews></app-reviews>
@@ -36,7 +36,7 @@
           </div>
       </div>
       <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md=30 fxFlex.lg="25" fxFlex.xl="25">
-        <app-item-price [price_data] = productsid$></app-item-price>
+        <app-item-price></app-item-price>
       </div>
     </div>
   </div>

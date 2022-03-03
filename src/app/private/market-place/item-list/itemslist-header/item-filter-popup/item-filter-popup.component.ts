@@ -23,10 +23,8 @@ export class ItemFilterPopupComponent implements OnInit {
   panelOpenState = false;
 
   seasons: string[] = ['200 Above', '100 to 200', '50 to 100', 'Under 25'];
-  brands: string[] = ['Apsara','Cross','Reynolds','ZesTale'];
-  brandlists: string[] = ['Classmate','Parker','Waterman','4Ever'];
-  colorlists: string[] = [ 'Coffee','Ivory','Red'];
-  colors: string[] = ['Grey','Pink','Yellow'];
+  brands: string[] = ['Apsara','Classmate','Cross','Parker','Reynolds','Waterman','ZesTale','4Ever'];
+  colors: string[] = [ 'Coffee','Grey','Ivory','Pink','Red','Yellow'];
 
   constructor() { }
 

@@ -133,26 +133,31 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { ReviewInputComponent } from './private/my-account/orders/review-input/review-input.component';
-import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { EffectsModule } from '@ngrx/effects';
-import * as fromProduct from './store/product_store/reducer';
-import * as fromCategory from './store/category/category_reducer';
-import * as frombrands from './store/filter_store/brand_store/brand_reducer';
-import * as fromColor from './store/filter_store/color_store/color_reducer';
-import * as fromprices from './store/filter_store/pricefilter_store/price_reducer';
-import { environment } from 'src/environments/environment';
-import { Product_Effects } from './store/product_store/effect';
-import { reducers } from './store';
-import { Category_Effects } from './store/category/category_effect';
-import { Brand_Effects } from './store/filter_store/brand_store/brand_effect';
-import { Color_Effects } from './store/filter_store/color_store/color_effect';
-import { Price_Effects } from './store/filter_store/pricefilter_store/price_effect';
-// import * as formBrand from './store/category/brand_reducer';
-import * as fromcart from './store/add_item_to_cart/cart_reducer';
+import { ReviewSubmitPopupComponent } from './private/my-account/orders/review-input/review-submit-popup/review-submit-popup.component';
+import { StudentListComponent } from './private/dashboard/home/your-class/student-list/student-list.component';
+import { StudentDataComponent } from './private/dashboard/home/your-class/student-data/student-data.component';
+import { ReviewDataComponent } from './private/market-place/item-selected/review-data/review-data.component';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatSortModule} from '@angular/material/sort';
+import { GoogleLoginProvider, SocialLoginModule } from 'angularx-social-login';
+import { InviteConformComponent } from './components/invitedtls-cards/invite-conform/invite-conform.component';
+import { InvitedTeachersComponent } from './private/dashboard/home/colleagues/invited-teachers/invited-teachers.component';
+import { DatePipe } from '@angular/common';
+import {ClipboardModule} from '@angular/cdk/clipboard';
+import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
+import { SavedcardDataComponent } from './components/my-account-details/savedcard-data/savedcard-data.component';
+import { ShowmoreBtnComponent } from './components/invitedtls-cards/showmore-btn/showmore-btn.component';
+import { AddAddresUpdateComponent } from './private/my-account/address-book/add-addres-update/add-addres-update.component';
+import { NgxMaskModule } from 'ngx-mask'
+import { ImgMagnifier } from "ng-img-magnifier";
+import { NguCarouselModule } from '@ngu/carousel';
+
 
 @NgModule({
   declarations: [
+    StudentListComponent,
+    StudentDataComponent,
+    ReviewDataComponent,
     AppComponent,
     AuthComponent,
     ComponentsComponent,
@@ -243,17 +248,31 @@ import * as fromcart from './store/add_item_to_cart/cart_reducer';
     InviteSuccessComponent,
     SearchResultComponent,
     ReviewInputComponent,
+    ReviewSubmitPopupComponent,
+    InviteConformComponent,
+    InvitedTeachersComponent,
+    DeleteDialogComponent,
+    SavedcardDataComponent,
+    ShowmoreBtnComponent,
+    AddAddresUpdateComponent,
   ],
   imports: [
+    NguCarouselModule,
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     MatIconModule,
     MatToolbarModule,
+    ImgMagnifier,
     MatIconModule,
     MatCardModule,
     MatTabsModule,
+    NgxMaskModule.forRoot(),
     MatButtonModule,
+    SocialLoginModule,
+    AppRoutingModule,
+    MatDividerModule,
+    ClipboardModule,
     MatAutocompleteModule,
     MatSidenavModule,
     MatInputModule,
@@ -287,17 +306,23 @@ import * as fromcart from './store/add_item_to_cart/cart_reducer';
     NgbAlertModule,
     BrowserAnimationsModule,
     NgxPaginationModule,
-    StoreModule.forRoot(reducers),
-    StoreDevtoolsModule.instrument({ maxAge: 75, logOnly: environment.production }),
-    StoreModule.forFeature(fromProduct.productsFeatureKey, fromProduct.Product_reducer),
-    StoreModule.forFeature(fromCategory.categorysFeatureKey, fromCategory.category_reducer),
-    StoreModule.forFeature(frombrands.BrandFeatureKey, frombrands.brand_reducer),
-    StoreModule.forFeature(fromColor.ColorFeatureKey, fromColor.color_reducer),
-    StoreModule.forFeature(fromprices.PriceFeatureKey, fromprices.price_reducer),
-    StoreModule.forFeature(fromcart.cart_item_FeatureKey, fromcart.item_cart_reducer),
-    EffectsModule.forRoot([Product_Effects, Category_Effects, Brand_Effects, Color_Effects, Price_Effects])
+    MatSortModule,
   ],
-  providers: [
+  providers: [DatePipe,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: true,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+            '1025129396094-frmm4kvqfs6971i2hssin6ng5imfrtt0.apps.googleusercontent.com'
+            )
+          }
+        ]
+      }
+    },
     MatDatepickerModule,
     MatNativeDateModule,
   ],

@@ -34,10 +34,26 @@
   }
   .brand{
     margin: 5px;
-    font-size: 12px;
+    font-size: 15px;
     font-family: "Montserrat";
     font-weight: 500;
     color: #808080;
+  }
+  .title{
+    font-size: 15px;
+    font-family: "Montserrat";
+    font-weight: 500;
+    color: #808080;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .title:hover{
+    font-size: 15px;
+    font-family: "Montserrat";
+    font-weight: 700;
+    color: #00AA75;
+    text-decoration: none;
+    cursor: pointer;
   }
   .more{
     border: 1px solid #F0F0F0;
@@ -53,7 +69,7 @@
   }
 .input{
   width: 70px; 
-  height: 30px; 
+  height: 40px; 
   text-align: center;
   border: 2px solid #EBEBEB;
   border-radius: 5px;
@@ -70,7 +86,12 @@
   font-size: 12px;
   font-family: "Montserrat";
   font-weight: 600;
+  background-color: #EBEBEB;
   color: #7E84A3;
+}
+.list-btn:active{
+  border: 1px solid #85899b;
+
 }
 .filter-input{
   padding: 5px;

@@ -5,7 +5,7 @@ export interface ButtonData {
   btn_name: string;
 }
 const ButtonInfo: ButtonData[] = [
-  { clsname: 'auth_btn', btn_name: 'SIGN UP'},
+  { clsname: 'auth_btn', btn_name: 'Back To Home'},
 ]
 @Component({
   selector: 'app-invite-success',

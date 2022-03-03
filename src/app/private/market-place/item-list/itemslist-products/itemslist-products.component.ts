@@ -1,98 +1,183 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { Product } from 'src/app/services/market_services/market_modal';
-import * as fromActions from '../../../../store/product_store/actions';
-import * as fromStore from '../../../../store/product_store/reducer';
-import * as fromSelector from '../../../../store/product_store/selecter';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { Component, OnInit } from '@angular/core';
 
+export interface ListProductData {
+  image: string;
+  title: string;
+  subtitle: string;
+  description: string;
+
+  reviews: number;
+  offers: number;
+  rating : number;
+  price: number;
+
+  favorite: string;
+  button_btn: string;
+}
+
+const ProductData: ListProductData[] = [
+  { 
+    image: '../../../../../assets/product4.png',
+    title: 'School Bag Canvas with Art Kit',
+    subtitle: 'Bag of Assorted Stationery Crayons , Sketch Pens.',
+    description: ' Oil Pastel, Gel pens, Mechanical Pencils, Clay with Kids Activity Book inside',
+
+    reviews: 75,
+    offers: 5,
+    rating : 4.5,
+    price: 150,
+
+    favorite: 'favorite_border',
+    button_btn: 'Buy'
+  },
+
+  { 
+    image: '../../../../../assets/product2.png',
+    title: 'PARKER Vector Gold Pen',
+    subtitle: '(Gold Nib) Fountain Pen',
+    description: 'Body Color: Gold, Made of Gold Plated, Ink Color: Blue',
+
+    reviews: 75,
+    offers: 20,
+    rating : 4.5,
+    price: 12,
+
+    favorite: 'favorite_border',
+    button_btn: 'Buy'
+  },
+
+  { 
+    image: '../../../../../assets/product1.png',
+    title: 'Funblast Bag',
+    subtitle: 'Bag of Assorted Stationery Crayons , Sketch Pens.',
+    description: ' Oil Pastel, Gel pens, Mechanical Pencils, Clay with Kids Activity Book inside',
+
+    reviews: 75,
+    offers: 5,
+    rating : 4.5,
+    price: 100,
+
+    favorite: 'favorite_border',
+    button_btn: 'Buy'
+  },
+
+  { 
+    image: '../../../../../assets/product3.png',
+    title: 'Cello Colorup Kit',
+    subtitle: '(Gold Nib) Fountain Pen',
+    description: ' Body Color: Gold, Made of Gold Plated, Ink Color: Blue',
+
+    reviews: 75,
+    offers: 20,
+    rating : 4.5,
+    price: 18,
+
+    favorite: 'favorite_border',
+    button_btn: 'Buy'
+  },
+
+  { 
+    image: '../../../../../assets/product4.png',
+    title: 'School Bag Canvas with Art Kit',
+    subtitle: 'Bag of Assorted Stationery Crayons , Sketch Pens.',
+    description: ' Oil Pastel, Gel pens, Mechanical Pencils, Clay with Kids Activity Book inside',
+
+    reviews: 75,
+    offers: 5,
+    rating : 4.5,
+    price: 150,
+
+    favorite: 'favorite_border',
+    button_btn: 'Buy'
+  },
+
+  // { 
+  //   image: '../../../../../assets/product6.png',
+  //   title: 'School Bag Canvas with Art Kit',
+  //   subtitle: 'Bag of Assorted Stationery Crayons , Sketch Pens.',
+  //   description: ' Oil Pastel, Gel pens, Mechanical Pencils, Clay with Kids Activity Book inside',
+
+  //   reviews: 75,
+  //   offers: 5,
+  //   rating : 4.5,
+  //   price: 150,
+
+  //   favorite: 'favorite_border',
+  //   button_btn: 'Bye'
+  // },
+
+  // { 
+  //   image: '../../../../../assets/product7.png',
+  //   title: 'School Bag Canvas with Art Kit',
+  //   subtitle: 'Bag of Assorted Stationery Crayons , Sketch Pens.',
+  //   description: ' Oil Pastel, Gel pens, Mechanical Pencils, Clay with Kids Activity Book inside',
+
+  //   reviews: 75,
+  //   offers: 5,
+  //   rating : 4.5,
+  //   price: 150,
+
+  //   favorite: 'favorite_border',
+  //   button_btn: 'Bye'
+  // },
+
+  // { 
+  //   image: '../../../../../assets/product8.png',
+  //   title: 'School Bag Canvas with Art Kit',
+  //   subtitle: 'Bag of Assorted Stationery Crayons , Sketch Pens.',
+  //   description: ' Oil Pastel, Gel pens, Mechanical Pencils, Clay with Kids Activity Book inside',
+
+  //   reviews: 75,
+  //   offers: 5,
+  //   rating : 4.5,
+  //   price: 150,
+
+  //   favorite: 'favorite_border',
+  //   button_btn: 'Bye'
+  // },
+
+  
+  // { 
+  //   image: '../../../../../assets/product3.png',
+  //   title: 'School Bag Canvas with Art Kit',
+  //   subtitle: 'Bag of Assorted Stationery Crayons , Sketch Pens.',
+  //   description: ' Oil Pastel, Gel pens, Mechanical Pencils, Clay with Kids Activity Book inside',
+
+  //   reviews: 75,
+  //   offers: 5,
+  //   rating : 4.5,
+  //   price: 150,
+
+  //   favorite: 'favorite_border',
+  //   button_btn: 'Bye'
+  // },
+
+  // { 
+  //   image: '../../../../../assets/product1.png',
+  //   title: 'School Bag Canvas with Art Kit',
+  //   subtitle: 'Bag of Assorted Stationery Crayons , Sketch Pens.',
+  //   description: ' Oil Pastel, Gel pens, Mechanical Pencils, Clay with Kids Activity Book inside',
+
+  //   reviews: 75,
+  //   offers: 5,
+  //   rating : 4.5,
+  //   price: 150,
+
+  //   favorite: 'favorite_border',
+  //   button_btn: 'Bye'
+  // },
+];
 @Component({
   selector: 'app-itemslist-products',
   templateUrl: './itemslist-products.component.html',
-  styleUrls: ['./itemslist-products.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
-
+  styleUrls: ['./itemslist-products.component.scss']
 })
 export class ItemslistProductsComponent implements OnInit {
-  isLoading$: Observable<boolean>;
-  error$: Observable<string | null>;
-  products$: Observable<Product[]>;
-  totalRows$: number;
-  pageSize$:  number;
-  currentPage$: number;
-  brandsid$: number;
-  colorsid$: number;
-  categorysid$: number;
-  maxPrices$: number;
-  miniPrices$: number; 
-  pageSizeOptions: number[] = [1, 2, 5, 10, 50, 100];
-  @ViewChild(MatPaginator)paginator!: MatPaginator;
+  listDatas = ProductData;
 
-  constructor(private store: Store<fromStore.ProductState>) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.store.dispatch(fromActions.Load_All_Products({ pageSize: 5, 
-                                                        CurentPage: 0,
-                                                        Brandsid: 0, 
-                                                        Colorsid: 0,
-                                                        MaximumPrice: 0,
-                                                        MinimumPrice: 0,
-                                                        Categoryid: 0,
-                                                      }));
-    this.products$ = this.store.select(fromSelector.products);
-    this.isLoading$ = this.store.select(fromSelector.isLoading);
-    this.store.select(fromSelector.totalCount).subscribe(
-      (totpage: number) => {
-          this.totalRows$=totpage;
-      }
-     );
-     this.store.select(fromSelector.pageCountSize).subscribe(
-      (pagesiz: number) => {
-          this.pageSize$=pagesiz;
-      }
-     );
-  this.store.select(fromSelector.currentPageCount).subscribe(
-    (curpage: number) => {
-        this.currentPage$=curpage;
-    }
-   );
-   this.store.select(fromSelector.brandCountId).subscribe(
-    (brandid$: number) => {
-        this.brandsid$ = brandid$
-    }
-   );
-   this.store.select(fromSelector.colorcountId).subscribe(
-    (colorid$: number) => {
-        this.colorsid$ = colorid$;
-    }
-   );
-   this.store.select(fromSelector.categoryCountId).subscribe(
-    (category$: number) => {
-        this.categorysid$=category$;
-    }
-   );
-   this.store.select(fromSelector.MaxCountPrice).subscribe(
-    (maxPrice$: number) => {
-        this.maxPrices$=maxPrice$;
-    }
-   );
-   this.store.select(fromSelector.MiniCountPrice).subscribe(
-    (miniPrice$: number) => {
-        this.miniPrices$=miniPrice$;
-    }
-   );
   }
-  pageChanged(event: PageEvent) : void {
-    console.log({ event });
-    this.store.dispatch(fromActions.Load_All_Products({ pageSize: event.pageSize, 
-                                                        CurentPage: event.pageIndex,
-                                                        Brandsid: this.brandsid$, 
-                                                        Colorsid: this.colorsid$,
-                                                        Categoryid : this.categorysid$,
-                                                        MaximumPrice: this.maxPrices$,
-                                                        MinimumPrice: this.miniPrices$,
-                                                    }));
-                                                    console.log(this.brandsid$)
-  }
+
 }

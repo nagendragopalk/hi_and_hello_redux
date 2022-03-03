@@ -1,13 +1,4 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
-import { Product } from 'src/app/services/market_services/market_modal';
-import * as fromActions from '../../../store/product_store/actions';
-import * as fromStore from '../../../store/product_store/reducer';
-import * as fromSelector from '../../../store/product_store/selecter';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-
 
 @Component({
   selector: 'app-item-selected',
@@ -17,31 +8,10 @@ import { switchMap } from 'rxjs/operators';
 })
 export class ItemSelectedComponent implements OnInit {
   item: string[] = ['Grey', 'Red', 'Yellow'];
-  // id: any
-  isLoading$: Observable<boolean>;
-  error$: Observable<string | null>;
-  productsid$: Product;
-  ProductData: {}  
 
-  constructor(
-    private store: Store<fromStore.ProductState>,
-    private route: ActivatedRoute,
-    private router: Router,
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        of(params.get('id'))
-      )
-    ).subscribe((id) => {
-      this.store.dispatch(fromActions.Load_Product_detailes({id}))
-    });
-    this.store.select(fromSelector.getdetails$).subscribe(
-      (Product_details: Product) => {
-          this.productsid$ = Product_details;
-      }
-     );
   }
   description(){
     document.getElementById("description")?.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});

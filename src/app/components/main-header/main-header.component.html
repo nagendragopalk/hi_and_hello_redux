@@ -12,7 +12,7 @@
                         <mat-option *ngFor="let option of filteredOptions | async" [value]="option" class="sch-list" routerLink='/search-result'>
                           {{option}}
                         </mat-option>
-                      </mat-autocomplete>
+                    </mat-autocomplete>
                 </mat-form-field>
             </div>
         </div>
@@ -28,18 +28,42 @@
         <div fxFlex.xs="34" fxFlex.sm="34" fxFlex.md="34" fxFlex.lg="34" fxFlex.xl="34">
             <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="gappx">
                 <button mat-icon-button aria-label="" (click)="toggleSelected()">
-                    <mat-icon *ngIf="selected" class="icons-head" routerLinkActive="active">favorite</mat-icon>   <mat-icon *ngIf="!selected" aria-label="" class="icons-head">favorite_border</mat-icon>
+                    <mat-icon class="icons-head"  routerLink="/favorites" routerLinkActive="active">favorite</mat-icon>
                 </button>
-                <a class="head-text pr-2" routerLink="/favorites" routerLinkActive="active">Favorite</a>
+                <a class="head-text pr-2" routerLink="/favorites" routerLinkActive="active">Favorites</a>
     
-                <button mat-icon-button aria-label="" class="ml-xs overflow-visible">
+                <button mat-icon-button aria-label="">
                     <mat-icon class="icons-head" routerLink="/cart-items" routerLinkActive="active">shopping_cart</mat-icon>
-                    <!-- <span class="notification-label" *ngIf="cartCount$ | async as count" >{{ (count > 0) ? count : '' }}</span> -->
                 </button>
                 <a class="head-text pr-3" routerLink="/cart-items" routerLinkActive="active">Cart</a>
     
                 <div class="my-account">
-                    <img src="../../../assets/Avatar.png">
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <img src="../../../assets/Avatar.png">
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <div fxLayout="column" class="prof_info">
+                            <div>
+                                <img class="img_profile" src="../../../assets/Avatar.png">
+                            </div>
+                            <div class="pt-3">
+                                <span class="profile_title">Jory Lenz</span>
+                            </div>
+                            <div>
+                                <span class="email_text">jorylenz@gmail.com</span>
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <button mat-menu-item class="list_btn" routerLink="/my-account">
+                                <mat-icon class="btn-icon" matPrefix>perm_contact_calendar</mat-icon>
+                                My Account
+                            </button>
+                            <button mat-menu-item class="list_btn" routerLink="/">
+                                <mat-icon matPrefix>power_settings_new</mat-icon>
+                                Logout
+                            </button>
+                        </div>
+                      </mat-menu>
                 </div>
             </div>
         </div>
@@ -50,7 +74,7 @@
     <mat-toolbar class="tool-bars">
         <div fxFlex.xs="33" fxFlex.sm="33" fxFlex.md="33" fxFlex.lg="33" fxFlex.xl="33">
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="gappx">
-                <mat-icon  class="icons-head">menu</mat-icon>
+                <button mat-icon-button ><mat-icon  class="icons-head">menu</mat-icon></button>
             </div>
         </div>
         <div fxFlex.xs="33" fxFlex.sm="33" fxFlex.md="33" fxFlex.lg="33" fxFlex.xl="33">
@@ -62,7 +86,7 @@
         </div>
         <div fxFlex.xs="34" fxFlex.sm="34" fxFlex.md="34" fxFlex.lg="34" fxFlex.xl="34">
             <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="gappx">
-                <mat-icon  class="icons-head" routerLink="/cart-items" >shopping_cart</mat-icon>
+                <mat-icon  class="icons-head" routerLink="/cart-items" routerLinkActive="active">shopping_cart</mat-icon>
             </div>
         </div>
     </mat-toolbar>
@@ -79,10 +103,10 @@
 <div>
     <mat-toolbar class="sub-title">
         <div class="sub-head">
-            <a class="tabs" routerLink="/dashboard" routerLinkActive="active">Dashbaord</a>
+            <a class="tabs" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
         </div>
         <div class="sub-head">
-            <a class="tabs" routerLink="/market-place" routerLinkActive="active">Market Place</a>
+            <a class="tabs" routerLink="/market-place" routerLinkActive="active">Marketplace</a>
         </div>
         <div class="sub-head">
             <a class="tabs" routerLink="/my-account" routerLinkActive="active" >My Account</a>

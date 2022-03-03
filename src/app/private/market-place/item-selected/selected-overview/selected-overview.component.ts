@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Product } from 'src/app/services/market_services/market_modal';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-selected-overview',
@@ -7,8 +6,6 @@ import { Product } from 'src/app/services/market_services/market_modal';
   styleUrls: ['./selected-overview.component.scss']
 })
 export class SelectedOverviewComponent implements OnInit {
-
-  @Input() review_Data : Product;
 
   constructor() { }
 

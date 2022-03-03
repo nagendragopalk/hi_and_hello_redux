@@ -30,7 +30,7 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/assets/mob-logo.png",
+              "src/favicon.ico",
               "src/assets"
             ],
             "styles": [

@@ -54,12 +54,14 @@
     font-weight: 500;
     font-family: "Montserrat";
     color: #00AA75;
+    cursor: pointer;
 }
 .font-cancel{
     font-size: 16px;
     font-weight: 500;
     font-family: "Montserrat";
     color: #000000;
+    cursor: pointer;
 }
 
 .book-addrs-title{
@@ -103,4 +105,55 @@
     font-size: 16px;
     font-weight: 500;
     font-family: "Montserrat";
+}
+.mat-datepicker-toggle{
+    font-size: 25px !important;
+}
+.details-btn{
+    background: linear-gradient(to left, #69bd65, #22ab72);
+    border-radius: 30px;
+    width: 120px;
+    height: 50px;
+    box-shadow: 1px 3px 5px 0px #b3b3b3;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: "Montserrat";
+}
+.file-input-wrapper {
+    width: 70px;
+    // height: 10px;
+    // margin: 2px;
+    overflow: hidden;
+    // border: 1px solid #c9c9c9;
+    // box-shadow: 0px 0px 2px 1px #c9c9c9;
+    // border-radius: 3px;
+    position: relative;
+    // background-color: #fff;
+  }
+  
+  .file-input-wrapper>input[type="file"] {
+    font-size: 40px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .uplode_data{
+    width: 200px;
+    height: 100px;
+    margin: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .data_img{
+        width: 100%;
+    }
+  }
+  .rev-uplode{
+    width: 200px;
+    height: 100px;
+    cursor: pointer;
 }

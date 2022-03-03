@@ -17,7 +17,7 @@
     font-size: small;
     font-weight: 500;
     font-family: "Montserrat";
-    width: 180px;
+    width: 200px;
     height: 30px;
     display: flex;
     justify-content: center;
@@ -32,7 +32,7 @@
     justify-content: center;
     align-items: center;
     margin-right: 4px;
-    color:#5A607F;  
+    color:#5A607F;
 }
 .week{
     display: none;
@@ -40,7 +40,24 @@
 .weeks{
     display: block;
 }
-
+.shorday{
+    border: 1px solid #D7DBEC;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: #000000;  
+}
+.shorday:hover{
+    border: 1px solid #D7DBEC;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #00AA75;
+    color: white;  
+}
 .view-btn{
     border: 1px solid #02b47c;
     background: #cceee3;
@@ -145,8 +162,16 @@
     }
     .dates{
         font-size: 10px;
-        width: 150px;
+        width: 180px;
         height: 25px;
+    }
+    .shorday{
+        height: 25px;
+        font-size: 10px;
+    }
+    .shorday:hover{
+        height: 25px;
+        font-size: 10px; 
     }
     .range{
         font-size: 15px;
@@ -155,7 +180,7 @@
 }
 @media only screen and (min-width: 100px) and (max-width: 397px){
     .view-title{
-        font-size: 7px;
+        font-size: 8px;
     }
     .view-price{
         font-size: 15px;
@@ -173,12 +198,26 @@
     }
     .dates{
         font-size: 8px;
-        width: 135px;
+        width: 150px;
         height: 25px;
+    }
+    .shorday{
+        height: 25px;
+        font-size: 8px;
+    }
+    .shorday:hover{
+        height: 25px;
+        font-size: 8px; 
     }
     .range{
         font-size: 15px;
         margin-right: 4px;
     }   
 }
+// ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+//     background-color: #fafafa !important;
+// }
 
+::ng-deep .mat-datepicker-toggle, .mat-datepicker-content .mat-calendar-next-button, .mat-datepicker-content .mat-calendar-previous-button {
+    font-size: 5px !important;
+}

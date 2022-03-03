@@ -13,8 +13,8 @@ export class PaymentCardComponent implements OnInit {
 
   openDialog() {
     this.dialog.open(AddCardDetailsComponent, {
-      height: '650px',
-      width: '900px',
+      height: '550px',
+      width: '800px',
     });
   }
   ngOnInit(): void {

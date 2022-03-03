@@ -43,7 +43,7 @@
     font-family: "Montserrat";
 }
 .img-rwd{
-    width: 80px;
+    width: 100px;
 }
 @media only screen and (min-width: 50px) and (max-width: 500px){
     .stu-brd{
@@ -69,13 +69,13 @@
 .bord{
     width: 100px;
     height: 100px;
-    justify-content: center;
-    align-items: center;
+    justify-content: end;
+    align-items: end;
     display: flex;
+    position: relative;
 }
 .brd-icon{
-    // border: 1px solid;
-    position: absolute;
+    // position: absolute;
     width: 35px;
     height: 35px;
     display: flex;
@@ -84,10 +84,13 @@
     background: #00AA75;
     border-radius: 30px;
 }
+.stu-img{
+    position: absolute;
+}
 .prd{
-
-    padding-top: 80px;
-    padding-left: 15px;
+    position: absolute;
+    // padding-top: 80px;
+    // padding-left: 15px;
 }
 .stu-icon-logo{
     width: 25px;

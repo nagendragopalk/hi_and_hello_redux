@@ -1,8 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Product } from 'src/app/services/market_services/market_modal';
-import * as fromCartActions from '../../../../store/add_item_to_cart/cart_actions';
-import * as fromStore from '../../../../store/product_store/reducer';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-item-price',
@@ -10,16 +6,15 @@ import * as fromStore from '../../../../store/product_store/reducer';
   styleUrls: ['./item-price.component.scss']
 })
 export class ItemPriceComponent implements OnInit {
+  @Input() selected: boolean;
+  @Output() selectedChange = new EventEmitter<boolean>();
 
-  @Input() price_data : Product;
-
-  constructor(    private store: Store<fromStore.ProductState>) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
-
-  // addProductCart(product: Product): void {
-  //   this.store.dispatch(fromCartActions.addToCart());
-  // }
-
+  public toggleSelected() {
+    this.selected = !this.selected;
+    this.selectedChange.emit(this.selected);
+  }
 }

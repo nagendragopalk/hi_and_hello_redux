@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 export interface overviewData {
   icon: string;
@@ -9,9 +10,9 @@ export interface overviewData {
 }
 
 const ViewData: overviewData[] = [
-  { icon: 'cached', title: 'Wallet Balance', price: "100 FB", iconcol: 'view-btn'},
-  { icon: 'arrow_upward', title: 'Amount Used', price: "10 FB",  iconcol: 'view-btns'},
-  { icon: 'account_balance_wallet', title: 'Remaining in wallet', price: "90 FB",  iconcol: 'view-btn'},
+  { icon: 'attach_money', title: 'Wallet Balance', price: "100 FC", iconcol: 'view-btn'},
+  { icon: 'money_off', title: 'Amount Used', price: "10 FC",  iconcol: 'view-btn'},
+  { icon: 'account_balance_wallet', title: 'Remaining in wallet', price: "90 FC",  iconcol: 'view-btn'},
   { icon: 'shopping_cart', title: 'Total Orders', price: "2",  iconcol: 'view-btn'},
 ];
 @Component({
@@ -21,17 +22,33 @@ const ViewData: overviewData[] = [
 })
 
 export class OverviewComponent implements OnInit {
-  views: string[] = ['image','title','subtitle','iconcol'];
   overViewinfos = ViewData;
+  activeState = 'Draft';
+
+  states = [
+    'Last 7 Days',
+    'Last 30 Days',
+  ]
+  private toggle: boolean = false;
+  @Input() color: string = 'red';
 
   range = new FormGroup({
-    start: new FormControl(),
+    start: new FormControl(this.datepipe.transform((new Date), 'MM/dd/yyyy')),
     end: new FormControl(),
   });
+ 
+
+
+  constructor(public datepipe: DatePipe) { 
   
-  constructor() { }
+  }
 
   ngOnInit(): void {
   }
-
+  setStateAsActive(state: any) {
+    this.activeState = state;
+      let currentDateTime =this.datepipe.transform((new Date), 'MM/dd/yyyy');
+  
+    console.log(currentDateTime);
+  }
 }

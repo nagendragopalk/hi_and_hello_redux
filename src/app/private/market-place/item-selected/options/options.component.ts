@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Product } from 'src/app/services/market_services/market_modal';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-options',
@@ -7,8 +6,6 @@ import { Product } from 'src/app/services/market_services/market_modal';
   styleUrls: ['./options.component.scss']
 })
 export class OptionsComponent implements OnInit {
-
-  @Input() option_data : Product;
 
   constructor() { }
 

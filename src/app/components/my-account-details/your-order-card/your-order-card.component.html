@@ -4,7 +4,7 @@
             <div fxLayoutAlign="center center" fxLayoutGap="gappx" class="order-bgr">
                 <div class="order-bd">
                     <div>
-                        <img src="{{yourOrder_Data.image}}">
+                        <img class="img-brd" src="{{yourOrder_Data.image}}">
                     </div>
                 </div>
             </div>
@@ -22,7 +22,8 @@
                         </div>
                     </div>
                     <div>
-                        <button mat-button class="order-btn">{{yourOrder_Data.item}}</button>
+                        <a class="order-btn">{{yourOrder_Data.item}}</a>
+                        <!-- <button mat-button class="order-btn">{{yourOrder_Data.item}}</button> -->
                     </div>
                 </div>
                 <div fxLayout="row" class="pb-3">
@@ -30,7 +31,7 @@
                         <span class="order-font">Total:</span>
                     </div>
                     <div>
-                        <span class="order-font-color">{{yourOrder_Data.total}} FB</span>
+                        <span class="order-font-color">{{yourOrder_Data.total}} FC</span>
                     </div>
                 </div>
                 <div fxLayout="row" class="pb-3">
@@ -38,10 +39,10 @@
                 </div>
                 <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="gappx">
                     <div>
-                        <a href="" class="order-font">{{yourOrder_Data.track}}</a>
+                        <a class="order-font" style="cursor: pointer;">{{yourOrder_Data.track}}</a>
                     </div>
                     <div>
-                        <a href="" class="order-font" routerLink="/orders-list">{{yourOrder_Data.details}}</a>
+                        <a class="order-font" routerLink="/orders-list">{{yourOrder_Data.details}}</a>
                     </div>
                 </div>
             </div>

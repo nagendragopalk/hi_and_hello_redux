@@ -13,9 +13,6 @@
                                 <img class="cong" src="../../assets/cong.png">
                             </div>
                             <div class="right">
-                                <!-- <div class="center">
-                                    <button mat-raised-button routerLink="/dashboard" class="but">Let's Get Started</button>
-                                </div> -->
                                 <div *ngFor="let btn_info of btn_infos" class="pl-5 pr-5" style="padding-top: 32px;">
                                     <app-buttons-btn  [btn_Data] = "btn_info" [routerLink]="['/dashboard']" ></app-buttons-btn>
                                 </div>

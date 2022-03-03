@@ -4,30 +4,84 @@
             <div>
                 <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="20" fxFlex.lg="20" fxFlex.xl="20" class="sub-items">
                     <div class="sub-items" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="gappx">
-                        <div class="select" *ngFor="let imgData of imgDatas">
-                            <img class="zomin" src="{{imgData.imgUrl}}">
+                        <div class="select" *ngFor="let imgData of imgDatas" (click)="onShowing(imgData.imgUrl)">
+                            <div class="brd" [class.active]="imgData.imgUrl === displayedImg">
+                                <img class="zomin" src="{{imgData.imgUrl}}">
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md=80 fxFlex.lg="80" fxFlex.xl="80">
+                <div fxHide fxShow.gt-sm fxFlex.xs="100" fxFlex.sm="100" fxFlex.md=80 fxFlex.lg="80" fxFlex.xl="80">
                     <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="gappx">
                         <div class="selects">
                             <div class="icon">
-                                <button mat-icon-button aria-label="" (click)="toggleSelected()">
-                                    <mat-icon *ngIf="selected" class="icons-head">favorite</mat-icon>   <mat-icon *ngIf="!selected" aria-label="" class="icons-head">favorite_border</mat-icon>
+                                <button mat-icon-button aria-label="" (click)="toggleSelecteds()">
+                                    <mat-icon *ngIf="selecteds" class="icons-heads">favorite</mat-icon>   <mat-icon *ngIf="!selecteds" aria-label="" class="icons-head">favorite_border</mat-icon>
                                 </button>
                             </div>
                             <div class="center">
-                                <img class="zom" src="../../../../../assets/product-details/Image.png">
+                                <div class="bord_img">
+                                        <ng-img-magnifier
+                                        id="myresult"
+                                        class="center"
+                                        thumbImage={{displayedImg}}
+                                        fullImage={{displayedImg}}
+                                        [top]="'30'"
+                                        [right]="'24'"
+                                        [lensWidth]="'100'"
+                                        [lensHeight]="'100'"
+                                        [resultWidth]="'30'"
+                                        [resultHeight]="'50'"
+                                        [imgWidth]="'250'"
+                                        [imgHeight]="'250'"
+                                        >
+                                        </ng-img-magnifier>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="gappx" class="dots">
-                        <mat-icon class="dot iconcol">fiber_manual_record</mat-icon>
-                        <mat-icon class="dot">fiber_manual_record</mat-icon>
-                        <mat-icon class="dot">fiber_manual_record</mat-icon>
-                        <mat-icon class="dot">fiber_manual_record</mat-icon>
+                </div>
+                <div fxHide.gt-sm fxShow fxFlex.xs="100" fxFlex.sm="100" fxFlex.md=80 fxFlex.lg="80" fxFlex.xl="80">
+                    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="gappx">
+                        <div class="selects">
+                            <div class="icon">
+                                <button mat-icon-button aria-label="" (click)="toggleSelecteds()">
+                                    <mat-icon *ngIf="selecteds" class="icons-heads">favorite</mat-icon>   <mat-icon *ngIf="!selecteds" aria-label="" class="icons-head">favorite_border</mat-icon>
+                                </button>
+                            </div>
+                            <ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="[first, second, third, forth]">
+                                <div *nguCarouselDef="let imgData of imgDatas;" class="item">
+                                    <div class="center">
+                                        <div class="bord_img">
+                                            <img *ngTemplateOutlet="imgData" src="{{imgData.imgUrl}}" width = "250" height = "250">
+
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <ng-template #first>
+                                    <img  width = "250" height = "250" src="'../../../../../assets/product-details/thum_1.svg">
+                                </ng-template>
+                            
+                                <ng-template #second>
+                                    <img  width = "250" height = "250" src="'../../../../../assets/product-details/thum_2.svg">
+                                </ng-template>
+                            
+                                <ng-template #third>
+                                    <img  width = "250" height = "250" src="'../../../../../assets/product-details/thum_3.svg">
+                                </ng-template>
+
+                                <ng-template #forth>
+                                    <img  width = "250" height = "250" src="'../../../../../assets/product-details/thum_4.svg">
+                                </ng-template>
+                            </ngu-carousel>
+                        </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="gappx">
+                        <ul class="myPoint" NguCarouselPoint>
+                            <li *ngFor="let j of myCarousel.pointNumbers;" [class.active]="j==myCarousel.activePoint" (click)="myCarousel.moveTo(j)"></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -38,10 +92,11 @@
             <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="gappx">
                 <div>
                     <div style="margin-bottom: 15px;" >
-                        <span class="title">{{description_data.name}}</span>
+                        <span class="title">School Bag Canvas with Art Kit</span>
                     </div>       
                     <div style="margin-bottom: 15px;">
-                        <span class="subtitle">{{description_data.subtitle}}</span>
+                        <span class="subtitle">Bag of Assorted Stationery 
+                            Crayons</span>
                     </div>
                     <div>
                         <section class="example-section">
@@ -51,25 +106,25 @@
                             <div class="example-list-section">
                               <ul>
                                 <li>
-                                    {{description_data.generic_name}}
+                                    Sketch Pens
                                 </li>
                                 <li>
-                                    {{description_data.generic_name}}
+                                    Oil Pastel
                                 </li>
                                 <li>
-                                    {{description_data.generic_name}}
+                                    Gel pens
                                 </li>
                                 <li>
-                                    {{description_data.generic_name}}
+                                    Mechanical Pencils
                                 </li>
                                 <li>
-                                    {{description_data.generic_name}}
+                                    Multi Color
                                 </li>
                                 <li>
-                                    {{description_data.generic_name}}
+                                    Clay with Kids Activity Book inside
                                 </li>
                                 <li>
-                                    {{description_data.generic_name}}
+                                    Type: Art Set
                                 </li>
                               </ul>
                             </div>
@@ -77,7 +132,7 @@
                         <section class="carts">
                             <div>
                                 <div class="bottom">
-                                    <span class="family titles"> {{description_data.price}} FB</span>
+                                    <span class="family titles">15 FB</span>
                                 </div>
                                 <div fxLayout="row" class="bottom">
                                     <div class="center">
@@ -96,7 +151,7 @@
                                         <div style="border: 2px solid #F0F0F0; border-radius: 30px; width: 60px;">
                                             <div fxLayout="row">
                                                 <div center><mat-icon class="rate center">star</mat-icon></div>
-                                                <div class="center"><span class="family rate">{{description_data.rating}}</span></div>
+                                                <div class="center"><span class="family rate">4.5</span></div>
                                             </div>
                                         </div>
                                     </div>
@@ -116,7 +171,9 @@
                                 </div>
                                 <div fxLayout="row" >
                                     <div class="center">
-                                        <mat-icon class="icon">favorite</mat-icon>
+                                        <button mat-icon-button aria-label="" (click)="toggleSelected()">
+                                            <mat-icon *ngIf="selected" class="icons-heads" routerLinkActive="active">favorite</mat-icon>   <mat-icon *ngIf="!selected" aria-label="" class="icons-head">favorite_border</mat-icon>
+                                        </button>
                                     </div>
                                     <div class="center">
                                         <span class="family dec">Favorite</span>

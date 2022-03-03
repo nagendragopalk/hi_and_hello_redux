@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import { InviteStuComponent } from './invite-stu/invite-stu.component'
 import { AddNewClsComponent } from './add-new-cls/add-new-cls.component'
@@ -6,23 +6,65 @@ import { AddStuClsComponent } from './add-stu-cls/add-stu-cls.component'
 import { GoogleClsComponent } from './google-cls/google-cls.component'
 import { ReUpdateClsComponent } from './re-update-cls/re-update-cls.component'
 import { RewardClassComponent } from './reward-class/reward-class.component'
+import { PeriodicElement } from 'src/app/services/modal.services';
+import {Sort} from '@angular/material/sort';
+import { Router } from '@angular/router';
+import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
 
-export interface PeriodicElement {
-  item: string;
-  name: string;
-  icons: string;
-  symbol: number;
-}
-// interface Food {
-//   value: string;
-//   viewValue: string;
-// }
 const ELEMENT_DATA: PeriodicElement[] = [
-  { icons: '../../../../../assets/josephpic.png', name: 'Joseph', symbol: 20, item: 'card_giftcard'},
-  { icons: '../../../../../assets/andrewpic.png', name: 'Sam Conner', symbol: 20,  item: 'card_giftcard'},
-  { icons: '../../../../../assets/Avatar.png', name: 'Andrew', symbol: 20,  item: 'card_giftcard'},
-  { icons: '../../../../../assets/andrewpic.png', name: 'Sam Conner', symbol: 20,  item: 'card_giftcard'},
-  { icons: '../../../../../assets/Ellipse 24.png', name: 'Harriett Clark', symbol: 100,  item: 'card_giftcard'},
+  { 
+    image: '../../../../../assets/josephpic.png', 
+    name: 'Abigail Rusev',
+    classname: 'Standard - 3 A',
+    price: '30 FC',
+    gift: '2',
+    giftstatus: 'Arriving Monday',
+    gifticon: 'card_giftcard',
+    giftcolor: 'pricefont',
+    statuscolor:'pricefont',
+    gifticoncolor:'giticoncolor',
+    invite: ''
+  },
+  { 
+    image: '../../../../../assets/andrewpic.png', 
+    name: 'Amelia Croy',
+    classname: 'Standard - 3 A',
+    price: '20 FC',
+    gift: '3',
+    giftstatus: 'Delivered',
+    gifticon: 'card_giftcard',
+    giftcolor: 'pricefont',
+    statuscolor:'gitdel',
+    gifticoncolor:'giticoncolor',
+    invite: ''
+  },
+  { 
+    image: '../../../../../assets/Avatar.png', 
+    name: 'Andrew Grella',
+    classname: 'Standard - 3 A',
+    price: '5 FC',
+    gift: '1',
+    giftstatus: 'Delivered',
+    gifticon: 'card_giftcard',
+    giftcolor: 'pricefont',
+    statuscolor:'gitdel',
+    gifticoncolor:'giticoncolor',
+    invite: ''
+
+  },
+  { 
+    image: '../../../../../assets/Ellipse 24.png', 
+    name: 'Anthony Formen',
+    classname: 'Standard - 3 A',
+    price: 'NA',
+    gift: 'Not yet gifted',
+    giftstatus: '-',
+    gifticon: 'delete',
+    giftcolor: 'nogiftcolor',
+    statuscolor:'pricefont',
+    gifticoncolor:'deleticoncolor',
+    invite: 'Invite'
+  },
 ];
 @Component({
   selector: 'app-your-class',
@@ -30,14 +72,28 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./your-class.component.scss'],
 })
 export class YourClassComponent implements OnInit {
-  displayedColumns: string[] = ['demo-icons', 'demo-name', 'demo-symbol','demo-item'];
-  dataSource = ELEMENT_DATA;
-  // foods: Food[] = [
-  //   {value: 'new', viewValue: 'Create a new class'},
-  //   {value: 'google', viewValue: 'Google Classroom'},
-  // ];
-  constructor(public dialog: MatDialog) { }
+  @Input() selected: boolean;
+  @Output() selectedChange = new EventEmitter<boolean>();
+  dataSources = ELEMENT_DATA;
 
+  constructor(
+    public dialog: MatDialog, 
+    private router: Router,
+    private googleServices: SocialAuthService
+    ) {
+    this.dataSources = ELEMENT_DATA.slice();
+   }
+   sortData(sort: Sort) {
+    const data = ELEMENT_DATA.slice();
+    if (!sort.active || sort.direction === '') {
+      this.dataSources = data;
+      return;
+    }
+  }
+  public toggleSelected() {
+    this.selected = !this.selected;
+    this.selectedChange.emit(this.selected);
+  }
   invteDialog() {
     const dialogRef = this.dialog.open(InviteStuComponent, {
       height: '600px',
@@ -112,4 +168,10 @@ export class YourClassComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  signInHangler(): void {
+        this.googleServices.signIn(GoogleLoginProvider.PROVIDER_ID).then((data) => {
+          localStorage.setItem('google_auth', JSON.stringify(data));
+          // this.router.navigateByUrl('/dashboard').then();
+        });
+      }
 }

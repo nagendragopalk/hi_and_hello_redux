@@ -32,7 +32,7 @@
     justify-content: center;
     align-items: center;
     margin-right: 4px;
-    color:#5A607F;  
+    color:#5A607F;
 }
 .week{
     display: none;
@@ -40,7 +40,29 @@
 .weeks{
     display: block;
 }
-
+.shorday{
+    height: 30px;
+    button {
+        font-family: "Montserrat";
+        border: 1px solid #D7DBEC;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        color: #000000;
+    }
+    button.active{
+        font-family: "Montserrat";
+        border: 1px solid #D7DBEC;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #00AA75;
+        color: #ffff;
+    }
+}
 .view-btn{
     border: 1px solid #02b47c;
     background: #cceee3;
@@ -148,6 +170,17 @@
         width: 180px;
         height: 25px;
     }
+    .shorday{
+        height: 25px;
+        button {
+            height: 25px;
+            font-size: 10px;
+        }
+        button.active{
+            height: 25px;
+            font-size: 10px;
+        }
+    }
     .range{
         font-size: 15px;
         margin-right: 4px;
@@ -176,6 +209,17 @@
         width: 150px;
         height: 25px;
     }
+    .shorday{
+        height: 25px;
+        button {
+            height: 25px;
+            font-size: 8px;
+        }
+        button.active{
+            height: 25px;
+            font-size: 8px;
+        }
+    }
     .range{
         font-size: 15px;
         margin-right: 4px;
@@ -188,3 +232,5 @@
 ::ng-deep .mat-datepicker-toggle, .mat-datepicker-content .mat-calendar-next-button, .mat-datepicker-content .mat-calendar-previous-button {
     font-size: 5px !important;
 }
+
+

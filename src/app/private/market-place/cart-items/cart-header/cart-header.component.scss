@@ -17,3 +17,12 @@ a{
     font-weight: 700;
     color: #B3B3B3;
 }
+.carthead{
+    background: #fafafa !important; 
+    height: 80px !important;
+}
+@media only screen and (min-width: 50px) and (max-width: 500px){
+    .carthead{
+        height: 60px !important;
+    }
+}

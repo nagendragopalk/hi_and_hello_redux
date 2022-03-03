@@ -22,19 +22,16 @@
             </div>
         </div>
         <div class="like-rate">
-            <span class="like-rates">4.5</span>
+            <span class="like-rates"><mat-icon style="font-size: 13px; padding-top: 4px;">star</mat-icon>4.5</span>
         </div>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="gappx" class="like-padd">
         <div>
-            <span class="like-price">{{product.price}} FB</span>
+            <span class="like-price">{{product.price}} FC</span>
         </div>
-        <!-- <div>
-            <button mat-button class="like-btn">Add to Cart</button>
-        </div> -->
         <div *ngFor="let btn_info of btn_infos">
-            <app-buttons-btn [btn_Data] = "btn_info" [routerLink]="['/item-selected']"></app-buttons-btn>
+            <app-buttons-btn [btn_Data] = "btn_info" [routerLink]="['/cart-items']"></app-buttons-btn>
         </div>
     </div>
 

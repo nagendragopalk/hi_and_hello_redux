@@ -28,6 +28,9 @@ import { InviteSuccessComponent } from "./private/my-account/refer-teacher/invit
 import { FavoritesComponent } from "../app/private/favorites/favorites.component";
 import { SearchResultComponent } from "./components/search-result/search-result.component"
 import { ReviewInputComponent } from "./private/my-account/orders/review-input/review-input.component";
+import { StudentDataComponent } from './private/dashboard/home/your-class/student-data/student-data.component';
+import { ReviewDataComponent } from './private/market-place/item-selected/review-data/review-data.component';
+import { InvitedTeachersComponent } from './private/dashboard/home/colleagues/invited-teachers/invited-teachers.component';
 const routes: Routes = [
   
   // { path:'', component: PublicComponent },
@@ -52,7 +55,7 @@ const routes: Routes = [
 
   { path:'market-place', component: MarketPlaceComponent },
 
-  { path:'item-selected/:id', component: ItemSelectedComponent },
+  { path:'item-selected', component: ItemSelectedComponent },
 
   { path:'cart-items', component: CartItemsComponent },
 
@@ -78,7 +81,14 @@ const routes: Routes = [
 
   { path: 'invite-success', component: InviteSuccessComponent },
 
-  { path: 'review-input', component: ReviewInputComponent }
+  { path: 'review-input', component: ReviewInputComponent },
+
+  { path: 'student-data', component: StudentDataComponent },
+
+  { path: 'review-data', component: ReviewDataComponent },
+
+  { path: 'Invited_teacher', component: InvitedTeachersComponent }
+
 
 ];
 

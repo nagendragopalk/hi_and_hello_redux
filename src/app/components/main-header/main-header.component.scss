@@ -47,6 +47,9 @@
 .icons-head{
   color: #D8D8D8;
 }
+.icons-head.active {
+  color: #00AA75;
+}
 .head-text{
   font-size: 14px;
   font-weight: 600;
@@ -55,7 +58,6 @@
 }
 .tool-bar{
   background: #ffffff;
-  // position: fixed;
 }
 
 .mob-search{
@@ -76,20 +78,11 @@
 }
 a:hover {
   color: #cceee3;
-  // background-color: #42545C;
  }
 
 a.active {
-  // background-color: black;
   color: #00AA75;
 }
-// .tabs:active{
-//   color: #999999
-// }
-
-// .tabs:focus{
-//   color: #00AA75;
-// }
 
 .sub-title{
   height: 50px;
@@ -139,18 +132,31 @@ a.active {
   height: 60px;
   font-size: 12px;
 }
-.notification-label {
-  position: absolute;
-  top: 0;
-  left: 50%;
+
+.email_text{
+  font-family: "Montserrat";
   font-size: 12px;
-  font-weight: 700;
-  line-height: 13px;
-  border-radius: 50%;
-  width: 13px;
-  height: 13px;
-  background-color: #f44336;
-  border: 4px solid #f44336;
-  color: white;
-  text-align: center;
+  font-weight: 400;
+  color: #ffffff;
+}
+.profile_title{
+  font-family: "Montserrat";
+  font-size: 18px;
+  font-weight: 400;
+  color: #ffffff;
+}
+.img_profile{
+  width: 50px;
+  height: 50px;
+}
+.list_btn{
+  font-family: "Montserrat";
+}
+.prof_info{
+  width: 250px; 
+  height: 150px; 
+  background-color: #00AA75; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
 }

@@ -4,8 +4,10 @@ export interface InviteInfo {
   label: string;
   title: string;
   subtitle: string;
+  schoolname: string
   btnclor: string;
   btn: string;
+
 }
 
 @Component({
@@ -14,7 +16,7 @@ export interface InviteInfo {
   styleUrls: ['./invitedtls-cards.component.scss']
 })
 export class InvitedtlsCardsComponent implements OnInit {
-  @Input() colleagues : InviteInfo;
+  @Input() invitepending : InviteInfo;
 
   constructor() { }
 

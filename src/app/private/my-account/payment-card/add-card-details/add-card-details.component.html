@@ -10,61 +10,56 @@
             </div>
         </div>
     </div>
-
-    <!-- <div class="p-3">
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Address Line 1*</mat-label>
-                        <input matInput placeholder="Enter">
-                    </mat-form-field> 
+    <form [formGroup]="cardDetails" (ngSubmit)="onClickSubmit(cardDetails.value)">
+        <div>
+            <div fxLayout="row wrwp">
+                <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="33" fxFlex.lg="33" fxFlex.xl="33">
+                    <div class="p-3">
+                        <mat-form-field class="example-full-width">
+                            <mat-label  class="pl-1">Credit Card</mat-label>
+                            <input class="pad-input" matInput placeholder="Card Number" formControlName="card_number" maxlength="16" (keypress)="keyPressNumbers($event)" required>
+                            <mat-icon matPrefix class="car-icon p-0">credit_card</mat-icon>
+                            <mat-error *ngIf="myError('card_number', 'required')">Please Enter Your Card Number</mat-error>
+                        </mat-form-field> 
+                    </div>
                 </div>
-
-                <div class="p-3">
-                    <mat-form-field class="example-full-width">
-                        <mat-label>City</mat-label>
-                        <input matInput placeholder="Enter">
-                    </mat-form-field> 
-                </div> -->
-    <div>
-        <div fxLayout="row wrwp">
-            <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="33" fxFlex.lg="33" fxFlex.xl="33">
-                <div class="p-3">
-                    <mat-form-field class="example-full-width">
-                        <mat-label  class="pl-1">Credit Card</mat-label>
-                        <input class="pad-input" matInput placeholder="Card Number">
-                        <mat-icon matPrefix class="car-icon p-0">credit_card</mat-icon>
-                    </mat-form-field> 
+                <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="33" fxFlex.lg="33" fxFlex.xl="33">
+                    <div class="p-3">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>EXP Date</mat-label>
+                            <input class="pad-input" matInput placeholder="MM/YYYY" formControlName="card_exp" mask="00/0000" maxlength="7" (keypress)="keyPressNumbers($event)" required>
+                            <mat-error *ngIf="myError('card_number', 'required')">Please Enter Your Expire Date and Year</mat-error>
+                        </mat-form-field>
+                    </div>
                 </div>
-            </div>
-            <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="33" fxFlex.lg="33" fxFlex.xl="33">
-                <div class="p-3">
-                    <mat-form-field class="example-full-width">
-                        <mat-label>EXP Date</mat-label>
-                        <input class="pad-input" matInput placeholder="MM/YYYY">
-                    </mat-form-field> 
-                </div>
-            </div>
-            <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="34" fxFlex.lg="34" fxFlex.xl="34">
-                <div class="p-3">
-                    <mat-form-field class="example-full-width">
-                        <mat-label>CVV</mat-label>
-                        <input class="pad-input" matInput placeholder="XXX">
-                    </mat-form-field> 
+                <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="34" fxFlex.lg="34" fxFlex.xl="34">
+                    <div class="p-3">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>CVV</mat-label>
+                            <input class="pad-input" matInput [type]="hide ? 'password' : 'text'" placeholder="XXX" formControlName="card_cvv" maxlength="3" (keypress)="keyPressNumbers($event)" required >
+                            <mat-error *ngIf="myError('card_number', 'required')">Please Enter Your CVV</mat-error>
+                            <div style="cursor: pointer;" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                <mat-icon style="color: #EAEAEA; font-size: medium;">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </div>
+                        </mat-form-field>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div>
-        <div class="p-3">
-            <mat-form-field class="example-full-width">
-                <mat-label>Name on card*</mat-label>
-                <input matInput placeholder="Enter">
-            </mat-form-field>
+        <div>
+            <div class="p-3">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Name on card</mat-label>
+                    <input matInput placeholder="Enter" formControlName="card_name" required>
+                    <mat-error *ngIf="myError('card_name', 'required')">Please Enter Your Name On the Card</mat-error>
+                </mat-form-field>
+            </div>
         </div>
-    </div>
-    <div fxLayout="row" fxLayoutAlign="center end" fxLayoutGap="gappx">
-        <div class="pad-btn">
-            <button mat-button class="address-btn">Add Now</button>
+        <div fxLayout="row" fxLayoutAlign="center end" fxLayoutGap="gappx">
+            <div class="pad-btn">
+                <button mat-button class="address-btn" mat-dialog-close [disabled] = "!cardDetails.valid" type="submit">Add Now</button>
+            </div>
         </div>
-    </div>
+    </form>
 </div>
 

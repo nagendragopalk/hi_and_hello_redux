@@ -1,14 +1,14 @@
 <div>
     <div class="filter-mob">
         <div class="filter-top">
-            <span class="filter-title"> Price (FB) </span>
+            <span class="filter-title"> Price (FC) </span>
         </div>
         <div class="filter-bottom">
             <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group">
-                <mat-radio-button class="brand" *ngFor="let season of seasons" [value]="season">
-                    {{season}}
-                </mat-radio-button>
-                <div fxLayout="row" fxLayoutAlign="center center">
+                <div fxLayout="row" *ngFor="let season of seasons" >
+                    <a class="title pt-2 pb-3">{{season}}</a>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center center" class="pt-3">
                     <div class="filter-input">
                         <input matInput class="input" placeholder="Min">
                     </div>
@@ -18,7 +18,6 @@
                     <div class="filter-input">
                         <button class="list-btn">Go</button>
                     </div>
-                    
                 </div>
             </mat-radio-group>
         </div>
@@ -30,19 +29,12 @@
         </div>
         <div  class="filter-bottom">
             <mat-radio-group aria-label="Select an option">
-                <div class="row">
-                    <div class="col-6">
-                        <mat-radio-button class="brand" *ngFor="let brand of brands" [value]="brand">
-                            {{brand}}
-                        </mat-radio-button>
-                    </div>
-                    <div class="col-6">
-                        <mat-radio-button class="brand" *ngFor="let brandlist of brandlists" [value]="brandlist">
-                            {{brandlist}}
-                        </mat-radio-button>
+                <div fxLayout="row wrap">
+                    <div fxFlex.xs="50" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50" *ngFor="let brand of brands">
+                        <mat-checkbox class="brand" [value]="brand">{{brand}}</mat-checkbox>
                     </div>
                 </div>
-                <button mat-button class="more">Show More</button>
+                <button mat-button class="more">Show More</button>  
             </mat-radio-group>
         </div>
     </div>
@@ -53,16 +45,9 @@
         </div>
         <div  class="filter-bottom">
             <mat-radio-group aria-label="Select an option">
-                <div class="row">
-                    <div class="col-6">
-                        <mat-radio-button class="brand" *ngFor="let colorlist of colorlists" [value]="colorlist">
-                            {{colorlist}}
-                        </mat-radio-button>
-                    </div>
-                    <div class="col-6">
-                        <mat-radio-button class="brand" *ngFor="let color of colors" [value]="color">
-                            {{color}}
-                        </mat-radio-button>
+                <div fxLayout="row wrap">
+                    <div fxFlex.xs="50" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50" *ngFor="let color of colors">
+                        <mat-checkbox class="brand" [value]="color">{{color}}</mat-checkbox>
                     </div>
                 </div>
                 <button mat-button class="more">Show More</button>

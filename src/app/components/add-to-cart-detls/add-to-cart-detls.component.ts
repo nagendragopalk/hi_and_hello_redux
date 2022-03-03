@@ -1,6 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { cart_Item } from 'src/app/services/market_services/cart_module';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
+export interface PeriodicElement {
+  item: string;
+  price: number;
+  quantity: string;
+  total: number;
+
+}
 
 @Component({
   selector: 'app-add-to-cart-detls',
@@ -9,23 +15,33 @@ import { cart_Item } from 'src/app/services/market_services/cart_module';
 })
 
 export class AddToCartDetlsComponent implements OnInit {
-  @Input() cart_details : cart_Item;
+  totalprice: number;
+  @Input() cart_details : PeriodicElement;
   
   public counter: number = 1;
   
   public increment() {
     this.counter += 1;
+    this.totalprice = this.cart_details.price*this.counter;
+    console.log(this.totalprice)
   }
 
   public decrement() {
     if (this.counter > 1) {
       this.counter -= 1;
+      this.totalprice = this.cart_details.price*this.counter;
+      console.log(this.totalprice)
     }
+  } 
+  constructor() { 
+    
   }
-  constructor() { }
 
   ngOnInit(): void {
-    console.log(this.cart_details.Product.name)
+    this.totalprice = this.cart_details.price*this.counter;
   }
-
+  @Output() sendCount : EventEmitter <number> = new EventEmitter<number>();
+    public sendRecord(totalcartval : number ) {  
+      this.sendCount.emit(totalcartval = this.totalprice);
+    }
 }

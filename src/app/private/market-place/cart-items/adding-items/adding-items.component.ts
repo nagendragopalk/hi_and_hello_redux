@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { cart_Item } from 'src/app/services/market_services/cart_module';
-import * as fromActions from '../../../../store/add_item_to_cart/cart_actions';
-import * as fromStore from '../../../../store/add_item_to_cart/cart_reducer';
-import * as fromSelector from '../../../../store/add_item_to_cart/cart_selectors';
+
 export interface PeriodicElement {
   item: string;
   price: number;
@@ -18,7 +13,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {item: '../../../../../assets/product5.png', price: 12, quantity: 'PARKER Vector Gold Pen', total: 4.0026},
 ];
 
-
 @Component({
   selector: 'app-adding-items',
   templateUrl: './adding-items.component.html',
@@ -26,25 +20,12 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class AddingItemsComponent implements OnInit {
   dataSources = ELEMENT_DATA;
-  cart_item$: Observable<cart_Item[]>;
 
-  public counter: number = 1;
-  constructor( private store: Store<fromStore.ShoppingCartState> ) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.store.dispatch(fromActions.Load_Cart_Action());
-    this.cart_item$ = this.store.select(fromSelector.selectCartCount$);
-    console.log(this.cart_item$)
   }
-  public increment() {
-    this.counter += 1;
+  getTotalCost() {
+    return this.dataSources.map(t => t.price).reduce((acc, value) => acc + value, 0);
   }
-
-  public decrement() {
-    if (this.counter > 1) {
-      this.counter -= 1;
-    }
-  }
-
-
 }

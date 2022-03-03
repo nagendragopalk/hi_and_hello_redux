@@ -12,7 +12,7 @@ export interface ButtonData {
 }
 
 const ButtonInfo: ButtonData[] = [
-  { clsname: 'like-btn', btn_name: 'Buy'},
+  { clsname: 'like-btn', btn_name: 'Add To Cart'},
 ]
 
 @Component({

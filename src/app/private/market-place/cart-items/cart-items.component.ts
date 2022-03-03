@@ -10,10 +10,21 @@ import {map} from 'rxjs/operators';
   templateUrl: './cart-items.component.html',
   styleUrls: ['./cart-items.component.scss'],
   providers: [{
-    provide: STEPPER_GLOBAL_OPTIONS, useValue: {displayDefaultIndicatorType: false}
+    provide: STEPPER_GLOBAL_OPTIONS, useValue: {displayDefaultIndicatorType: false, showError: false}
   }]
 })
 export class CartItemsComponent implements OnInit {
+  
+  firstFormGroups: FormGroup;
+  secondFormGroups: FormGroup;
+  thirdFormGroups : FormGroup;
+  forthFormGroups : FormGroup;
+  // isEditable = false;
+
+  constructor( private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver) { 
+    this.stepperOrientation = breakpointObserver.observe('(min-width: 800px)')
+    .pipe(map(({matches}) => matches ? 'horizontal' : 'vertical'));
+  }
 
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required]
@@ -30,16 +41,6 @@ export class CartItemsComponent implements OnInit {
   stepperOrientation: Observable<StepperOrientation>;
 
 
-  firstFormGroups: FormGroup;
-  secondFormGroups: FormGroup;
-  thirdFormGroups : FormGroup;
-  forthFormGroups : FormGroup;
-
-
-  constructor( private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver) { 
-    this.stepperOrientation = breakpointObserver.observe('(min-width: 800px)')
-    .pipe(map(({matches}) => matches ? 'horizontal' : 'vertical'));
-  }
 
   ngOnInit(): void {
     this.firstFormGroups = this._formBuilder.group({

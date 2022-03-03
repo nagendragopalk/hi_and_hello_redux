@@ -9,27 +9,22 @@
                     <div class="left">
                         <mat-card-title class="title">Email Verification </mat-card-title>
                         <mat-card-title>Please verify your school provided email address.</mat-card-title>
-                        <mat-card-title class="subtitle">We have sent a 6-digit code to your email address, please 
-                            enter it below.</mat-card-title>
-                        <div class="example-container">
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Enter 6 Digit Code</mat-label>
-                                <input matInput placeholder="Enter 6 Digit Code">
-                                <!-- <mat-error *ngIf="firstName.invalid">{{getnameErrorMessage()}}</mat-error>[formControl]="firstName" -->
-                            </mat-form-field>
-                        </div>
-                        <div class="top">
-                            <span style="font-size: 11px; font-family: 'Montserrat'; font-weight: 500;">Haven't received the code? - <a href="#" style="color: rgb(34,171,114); text-decoration: none;">Resend</a></span>
-                        </div>
-                        <div class="top">
-                            <span style="font-size: 11px; font-family: 'Montserrat'; font-weight: 500; display: flex; justify-content: center;">2:00</span>
-                        </div>
-                        <!-- <div class="center">
-                            <button mat-raised-button [routerLink]="['/all-set']" routerLinkActive="router-link-active" class="but">VERIFY</button>
-                        </div> -->
-                        <div *ngFor="let btn_info of btn_infos" class="pl-5 pr-5 pt-5">
-                            <app-buttons-btn  [btn_Data] = "btn_info" [routerLink]="['/all-set']" ></app-buttons-btn>
-                        </div>
+                        <mat-card-title class="subtitle">We have sent a 6-digit code to your email address, please enter it below.</mat-card-title>
+                            <form [formGroup]="verifyform" (ngSubmit)="onClickSubmit(verifyform.value)">
+                                <div class="example-container">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Enter 6 Digit Code</mat-label>
+                                        <input matInput placeholder="Enter 6 Digit Code" formControlName="emailCode" maxlength="6" (keypress)="keyPressNumbers($event)" >
+                                        <mat-error *ngIf="myError('emailCode', 'required')">You must Enter 6 digit code sent to your Email</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="top">
+                                    <span style="font-size: 11px; font-family: 'Montserrat'; font-weight: 500;">Haven't received the code? - <a style="color: rgb(34,171,114); text-decoration: none; cursor: pointer;">Resend</a></span>
+                                </div>
+                                <div class="pl-5 pr-5 pt-5">
+                                    <button mat-button [disabled] = "!verifyform.valid" class="auth_btn" type="submit">VERIFY</button>
+                                </div>
+                            </form>
                     </div>
                 </mat-card>
             </div>

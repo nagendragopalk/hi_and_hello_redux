@@ -1,43 +1,36 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
-import { Product } from 'src/app/services/market_services/market_modal';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { Store } from '@ngrx/store';
-import * as fromStore from '../../store/product_store/reducer';
-import * as fromAction from '../../store/product_store/actions';
-import * as fromSelect from '../../store/product_store/selecter';
-import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
+export interface ListProductData {
+  image: string;
+  title: string;
+  subtitle: string;
+  description: string;
+
+  reviews: number;
+  offers: number;
+  rating : number;
+  price: number;
+
+  favorite: string;
+  button_btn: string;
+}
 
 @Component({
   selector: 'app-list-product',
   templateUrl: './list-product.component.html',
-  styleUrls: ['./list-product.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
-
+  styleUrls: ['./list-product.component.scss']
 })
 export class ListProductComponent implements OnInit {
-  @Input() listProduct : Product;
+  @Input() listProduct : ListProductData;
   @Input() selected: boolean;
   @Output() selectedChange = new EventEmitter<boolean>();
-  imgurl = "http://192.168.1.3:3000/images/products/";
 
-  // hero$: Observable<Product[]>;
-  // Id: number;
-
-  constructor(
-    // private router: Router,
-    // private store: Store<fromStore.ProductState>  
-    ) { }
-
+  constructor() { }
+  
+  ngOnInit(): void {
+  }
   public toggleSelected() {
     this.selected = !this.selected;
     this.selectedChange.emit(this.selected);
   }
-
-  ngOnInit(): void {
-
-  }
-
 }
-
-

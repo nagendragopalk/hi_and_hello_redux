@@ -8,7 +8,7 @@
             <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" fxFlex.xl="100">
                 <div class="pt-2">
                     <div fxLayout="row wrap">
-                        <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50" class="p-2">
+                        <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50" class="p-4">
                             <div fxLayout="column" fxLayoutAlign="center cenetr" fxLayoutGap="gappx">
                                 <div class="pb-3">
                                     <span class="refer-font-title">20% off for you and 20% off for your colleagues</span>
@@ -36,9 +36,9 @@
                                         </div>
 
                                         <div class="center pb-3">
-                                            <div class="custom-search">
-                                                <input type="text" class="custom-search-input" placeholder="Https://invite.frizzmo.dsahigdkhjsagdsig3hjb3…">
-                                                <button class="custom-search-botton" type="submit">Copy Link</button>
+                                            <div class="custom-search" for="clipboard-example-text">
+                                                <input type="text" id="clipboard-example-text" class="custom-search-input" [(ngModel)]="value">
+                                                <button class="custom-search-botton" [cdkCopyToClipboard]="value" type="submit">Copy Link</button>
                                             </div>
                                         </div>
                                         <div>
@@ -49,23 +49,28 @@
                                         <div class="pb-3">
                                             <span class="book-addrs-title">Email Share Link</span>
                                         </div>
-                                        <div>
-                                            <div class="pb-2">
-                                                <mat-form-field class="input-refer">
-                                                    <input matInput class="ml-3" value="Enter colleagues name">
-                                                    <mat-icon matPrefix class="input-icon">person</mat-icon>
-                                                </mat-form-field>
+                                        <form [formGroup]="invitetechForm" (ngSubmit)="onClickSubmit(invitetechForm.value)">
+                                            <div>
+                                                <div class="pb-2">
+                                                    <mat-form-field class="input-refer">
+                                                        <input matInput placeholder=" Enter Teacher name" formControlName="techname" class="mb-1">
+                                                        <mat-icon matPrefix class="input-icon mr-2">person</mat-icon>
+                                                        <mat-error *ngIf="myError('techname', 'required')">You Must Enter name</mat-error>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="pb-1">
+                                                    <mat-form-field class="input-refer">
+                                                        <input matInput placeholder="Enter Teacher email" type="email" formControlName="techemail" class="mb-1">
+                                                        <mat-icon matPrefix class="input-icon mr-2">email</mat-icon>
+                                                        <mat-error *ngIf="myError('techemail', 'required')">You Must Email Address</mat-error>
+                                                        <mat-error *ngIf="myError('techemail', 'email')">Invalid Email Address</mat-error>
+                                                    </mat-form-field>
+                                                </div>
                                             </div>
-                                            <div class="pb-1">
-                                                <mat-form-field class="input-refer">
-                                                    <input matInput class="ml-3" value="Enter colleagues name">
-                                                    <mat-icon matPrefix class="input-icon">email</mat-icon>
-                                                </mat-form-field>
+                                            <div class="center pb-4">
+                                                <button mat-button class="refer-btn" [disabled] = "!invitetechForm.valid" type="submit" routerLink="/invite-success"  mat-dialog-close>INVITE</button>
                                             </div>
-                                        </div>
-                                        <div class="center pb-4">
-                                            <button mat-button class="refer-btn">INVITE</button>
-                                        </div>
+                                        </form>
                                         <div class="center pl-2 pr-2">
                                             <span class="book-addrs-font">By participating in the promotion, you accept <br> the Platform <a class="book-addrs-font" href="">Terms & Conditions</a> and <br>the <a class="book-addrs-font" href="">Promotion Terms & Conditions</a></span>                                        
                                         </div>

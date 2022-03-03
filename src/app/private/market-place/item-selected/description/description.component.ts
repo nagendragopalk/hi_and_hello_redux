@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { Product } from 'src/app/services/market_services/market_modal';
-
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { AfterViewInit, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { NguCarousel, NguCarouselConfig } from '@ngu/carousel';
 export interface ImgSelect{
   id: number;
   imgUrl: string;
@@ -8,31 +8,66 @@ export interface ImgSelect{
 
 const ImgInfo: ImgSelect[] = [
   { id: 1, imgUrl: '../../../../../assets/product-details/Image.png'},
-  { id: 2, imgUrl: '../../../../../assets/product-details/11.png'},
-  { id: 3, imgUrl: '../../../../../assets/product-details/12.png'},
-  { id: 4, imgUrl: '../../../../../assets/product-details/13.png'},
+  { id: 2, imgUrl: '../../../../../assets/product-details/thum_2.svg'},
+  { id: 3, imgUrl: '../../../../../assets/product-details/thum_1.svg'},
+  { id: 4, imgUrl: '../../../../../assets/product-details/thum_4.svg'},
 ];
 @Component({
   selector: 'app-description',
   templateUrl: './description.component.html',
-  styleUrls: ['./description.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./description.component.scss']
 })
 export class DescriptionComponent implements OnInit {
+  slideNo = 0;
+  withAnim = true;
+  resetAnim = true;
 
   imgDatas = ImgInfo;
-  displayedImg = 0;
-  @Input() description_data : Product;
-
+  displayedImg = '../../../../../assets/product-details/Image.png';
+  @Input() selecteds: boolean;
+  @Output() selectedChanges = new EventEmitter<boolean>();
   @Input() selected: boolean;
   @Output() selectedChange = new EventEmitter<boolean>();
 
-  constructor() { }
+  @ViewChild('myCarousel') myCarousel: NguCarousel<any>;
 
+  carouselConfig: NguCarouselConfig = {
+    grid: { xs: 1, sm: 1, md: 1, lg: 1, all: 0 },
+    load: 4,
+    // interval: {timing: 4000, initialDelay: 1000},
+    loop: true,
+    touch: true,
+    velocity: 0.2
+  }
+
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  ngAfterViewInit() {
+    this.cdr.detectChanges();
+  }
+
+  reset() {
+    this.myCarousel.reset(!this.resetAnim);
+  }
+
+  moveTo(slide: any) {
+    this.myCarousel.moveTo(slide, !this.withAnim);
+  }
+
+
+
+  
+  onShowing(img: any){
+    this.displayedImg = img;
+  }
   ngOnInit(): void { 
   }
   public toggleSelected() {
     this.selected = !this.selected;
     this.selectedChange.emit(this.selected);
+  }
+  public toggleSelecteds() {
+    this.selecteds = !this.selecteds;
+    this.selectedChanges.emit(this.selecteds);
   }
 }

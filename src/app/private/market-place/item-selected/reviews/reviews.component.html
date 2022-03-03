@@ -10,13 +10,7 @@
                         <span class="subtitle family">Customer reviews</span>
                      </div>
                     <div fxLayout="row">
-                        <div class="center">
-                            <mat-icon>star</mat-icon>
-                            <mat-icon>star</mat-icon>
-                            <mat-icon>star</mat-icon>
-                            <mat-icon>star</mat-icon>
-                            <mat-icon>star</mat-icon>
-                        </div>
+                        <ngb-rating class="rev-icon" [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating>
                         <div class="center" style="padding-left: 15px;">
                             <span class="rates family">4.5 out of 5</span>
                         </div>
@@ -86,11 +80,7 @@
                     </div>
                     <div fxLayout="row" class="bottom">
                         <div class="center">
-                            <mat-icon>star</mat-icon>
-                            <mat-icon>star</mat-icon>
-                            <mat-icon>star</mat-icon>
-                            <mat-icon>star</mat-icon>
-                            <mat-icon>star</mat-icon>
+                            <ngb-rating class="rev-icon" [max]="5" [(rate)]="starRating1" [readonly]="false"></ngb-rating>
                         </div>
                         <div class="center" style="padding-left: 10px;">
                             <span class="rate family">Value for money! Great gifting option</span>
@@ -120,11 +110,7 @@
                     </div>
                     <div fxLayout="row">
                         <div class="center">
-                            <mat-icon>star</mat-icon>
-                            <mat-icon>star</mat-icon>
-                            <mat-icon>star</mat-icon>
-                            <mat-icon>star</mat-icon>
-                            <mat-icon>star</mat-icon>
+                            <ngb-rating class="rev-icon" [max]="5" [(rate)]="starRating2" [readonly]="false"></ngb-rating>
                         </div>
                         <div class="center" style="padding-left: 15px;">
                             <span class="rate family">Loved it</span>
@@ -142,7 +128,7 @@
                 </div>
 
                 <div class="margin">
-                    <a class="more">See all reviews</a>
+                    <a class="more" routerLink='/review-data' >See all reviews</a>
                 </div>
             </div>
         </div>

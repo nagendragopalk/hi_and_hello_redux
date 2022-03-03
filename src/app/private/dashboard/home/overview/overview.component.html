@@ -8,12 +8,12 @@
             <div fxFlex.xs="100" fxFlex.sm="70" fxFlex.md="70" fxFlex.lg="70" fxFlex.xl="70">
                 <div class="weeks">
                     <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="gappx">
-                        <div class="pr-3">
-                            <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="date">
-                                <mat-button-toggle value="bold">Days</mat-button-toggle>
-                                <mat-button-toggle value="italic">Weeks</mat-button-toggle>
-                                <mat-button-toggle value="underline" style="background: #00aa72; color: white;">Months</mat-button-toggle>
-                            </mat-button-toggle-group>
+                        <div fxLayout="row" class="pr-3">
+                            <div class="shorday" *ngFor="let state of states" (click)="setStateAsActive(state)">
+                                <button mat-button [class.active]="state === activeState">
+                                    {{ state }}
+                                </button>
+                            </div>
                         </div>
                         <div>
                             <div class="dates" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="gappx">
@@ -33,16 +33,14 @@
         </div>
         <div class="week p-2">
             <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="gappx">
-                <div>
-                    <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="date">
-                        <mat-button-toggle value="bold" routerLinkActive="active" >Days</mat-button-toggle>
-                        <mat-button-toggle value="italic">Weeks</mat-button-toggle>
-                        <mat-button-toggle value="underline" style="background: #00aa72; color: white;">Months
-                        </mat-button-toggle>
-                    </mat-button-toggle-group>
+                <div fxLayout="row" class="pr-3">
+                    <div class="shorday" *ngFor="let state of states" (click)="setStateAsActive(state)">
+                        <button mat-button [class.active]="state === activeState">
+                            {{ state }}
+                        </button>
+                    </div>                            
                 </div>
                 <div>
-
                     <div class="dates" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="gappx">
                         <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
                         <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
