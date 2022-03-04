@@ -7,7 +7,7 @@ export interface ImgSelect{
 }
 
 const ImgInfo: ImgSelect[] = [
-  { id: 1, imgUrl: '../../../../../assets/product-details/Image.png'},
+  { id: 1, imgUrl: '../../../../../assets/product-details/Image.jpg'},
   { id: 2, imgUrl: '../../../../../assets/product-details/thum_2.svg'},
   { id: 3, imgUrl: '../../../../../assets/product-details/thum_1.svg'},
   { id: 4, imgUrl: '../../../../../assets/product-details/thum_4.svg'},
@@ -23,7 +23,7 @@ export class DescriptionComponent implements OnInit {
   resetAnim = true;
 
   imgDatas = ImgInfo;
-  displayedImg = '../../../../../assets/product-details/Image.png';
+  displayedImg = '../../../../../assets/product-details/Image.jpg';
   @Input() selecteds: boolean;
   @Output() selectedChanges = new EventEmitter<boolean>();
   @Input() selected: boolean;

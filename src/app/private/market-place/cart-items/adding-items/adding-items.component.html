@@ -24,8 +24,8 @@
             </div>
         </div>
         <hr fxHide fxShow.gt-sm>
-        <div *ngFor="let dataSource of dataSources">
-            <app-add-to-cart-detls [cart_details] = dataSource></app-add-to-cart-detls>
+        <div *ngFor="let dataSource of dataSources let i = index">
+            <app-add-to-cart-detls [cart_details] = dataSource [index]= i (parentFun)="parentFun($event)"></app-add-to-cart-detls>
         </div>
         <div>
             <div fxLayout="row wrap">
@@ -46,12 +46,12 @@
                     <div fxLayout="row" fxLayoutAlign="space-between" class="pt-4">
                         <div>
                             <div class="pr-2">
-                                <span class="descount">Discount:  <span class="price">&nbsp;3 FC</span></span>
+                                <span class="descount">Discount:  <span class="price">&nbsp;{{descount}} FC</span></span>
                             </div>
                         </div>
                         <div>
                             <div class="pr-2">
-                                <span class="descount">Total price:  <span class="price">&nbsp; {{getTotalCost() | currency}} FC</span></span>
+                                <span class="descount">Total price:  <span class="price">&nbsp; {{grandtotal}} FC</span></span>
                             </div>
                         </div>
                     </div>

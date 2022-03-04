@@ -3,7 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export interface PeriodicElement {
   item: string;
   price: number;
-  quantity: string;
+  name: string;
   total: number;
 
 }
@@ -15,14 +15,16 @@ export interface PeriodicElement {
 })
 
 export class AddToCartDetlsComponent implements OnInit {
-  totalprice: number;
   @Input() cart_details : PeriodicElement;
-  
+  @Output("parentFun") parentFun: EventEmitter<any> = new EventEmitter();
+  @Input() index: number;
   public counter: number = 1;
-  
+  totalprice: any;
+
   public increment() {
     this.counter += 1;
     this.totalprice = this.cart_details.price*this.counter;
+    this.parentFun.emit({ index: this.index, total: this.totalprice });
     console.log(this.totalprice)
   }
 
@@ -30,18 +32,14 @@ export class AddToCartDetlsComponent implements OnInit {
     if (this.counter > 1) {
       this.counter -= 1;
       this.totalprice = this.cart_details.price*this.counter;
+      this.parentFun.emit({ index: this.index, total: this.totalprice});
       console.log(this.totalprice)
     }
   } 
-  constructor() { 
-    
-  }
+  constructor() {}
 
   ngOnInit(): void {
     this.totalprice = this.cart_details.price*this.counter;
+    this.parentFun.emit({ index: this.index, total: this.totalprice});
   }
-  @Output() sendCount : EventEmitter <number> = new EventEmitter<number>();
-    public sendRecord(totalcartval : number ) {  
-      this.sendCount.emit(totalcartval = this.totalprice);
-    }
 }

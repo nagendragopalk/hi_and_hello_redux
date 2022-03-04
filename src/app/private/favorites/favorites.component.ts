@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, OnDestroy, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { Observable } from 'rxjs';
 export interface ListProductData {
   image: string;
   title: string;
@@ -91,81 +93,81 @@ const ProductData: ListProductData[] = [
     button_btn: 'Buy'
   },
 
-  // { 
-  //   image: '../../../../../assets/product6.png',
-  //   title: 'School Bag Canvas with Art Kit',
-  //   subtitle: 'Bag of Assorted Stationery Crayons , Sketch Pens.',
-  //   description: ' Oil Pastel, Gel pens, Mechanical Pencils, Clay with Kids Activity Book inside',
+  { 
+    image: '../../../../../assets/product6.png',
+    title: 'School Bag Canvas with Art Kit',
+    subtitle: 'Bag of Assorted Stationery Crayons , Sketch Pens.',
+    description: ' Oil Pastel, Gel pens, Mechanical Pencils, Clay with Kids Activity Book inside',
 
-  //   reviews: 75,
-  //   offers: 5,
-  //   rating : 4.5,
-  //   price: 150,
+    reviews: 75,
+    offers: 5,
+    rating : 4.5,
+    price: 150,
 
-  //   favorite: 'favorite_border',
-  //   button_btn: 'Bye'
-  // },
+    favorite: 'favorite_border',
+    button_btn: 'Bye'
+  },
 
-  // { 
-  //   image: '../../../../../assets/product7.png',
-  //   title: 'School Bag Canvas with Art Kit',
-  //   subtitle: 'Bag of Assorted Stationery Crayons , Sketch Pens.',
-  //   description: ' Oil Pastel, Gel pens, Mechanical Pencils, Clay with Kids Activity Book inside',
+  { 
+    image: '../../../../../assets/product7.png',
+    title: 'School Bag Canvas with Art Kit',
+    subtitle: 'Bag of Assorted Stationery Crayons , Sketch Pens.',
+    description: ' Oil Pastel, Gel pens, Mechanical Pencils, Clay with Kids Activity Book inside',
 
-  //   reviews: 75,
-  //   offers: 5,
-  //   rating : 4.5,
-  //   price: 150,
+    reviews: 75,
+    offers: 5,
+    rating : 4.5,
+    price: 150,
 
-  //   favorite: 'favorite_border',
-  //   button_btn: 'Bye'
-  // },
+    favorite: 'favorite_border',
+    button_btn: 'Bye'
+  },
 
-  // { 
-  //   image: '../../../../../assets/product8.png',
-  //   title: 'School Bag Canvas with Art Kit',
-  //   subtitle: 'Bag of Assorted Stationery Crayons , Sketch Pens.',
-  //   description: ' Oil Pastel, Gel pens, Mechanical Pencils, Clay with Kids Activity Book inside',
+  { 
+    image: '../../../../../assets/product8.png',
+    title: 'School Bag Canvas with Art Kit',
+    subtitle: 'Bag of Assorted Stationery Crayons , Sketch Pens.',
+    description: ' Oil Pastel, Gel pens, Mechanical Pencils, Clay with Kids Activity Book inside',
 
-  //   reviews: 75,
-  //   offers: 5,
-  //   rating : 4.5,
-  //   price: 150,
+    reviews: 75,
+    offers: 5,
+    rating : 4.5,
+    price: 150,
 
-  //   favorite: 'favorite_border',
-  //   button_btn: 'Bye'
-  // },
+    favorite: 'favorite_border',
+    button_btn: 'Bye'
+  },
 
   
-  // { 
-  //   image: '../../../../../assets/product3.png',
-  //   title: 'School Bag Canvas with Art Kit',
-  //   subtitle: 'Bag of Assorted Stationery Crayons , Sketch Pens.',
-  //   description: ' Oil Pastel, Gel pens, Mechanical Pencils, Clay with Kids Activity Book inside',
+  { 
+    image: '../../../../../assets/product3.png',
+    title: 'School Bag Canvas with Art Kit',
+    subtitle: 'Bag of Assorted Stationery Crayons , Sketch Pens.',
+    description: ' Oil Pastel, Gel pens, Mechanical Pencils, Clay with Kids Activity Book inside',
 
-  //   reviews: 75,
-  //   offers: 5,
-  //   rating : 4.5,
-  //   price: 150,
+    reviews: 75,
+    offers: 5,
+    rating : 4.5,
+    price: 150,
 
-  //   favorite: 'favorite_border',
-  //   button_btn: 'Bye'
-  // },
+    favorite: 'favorite_border',
+    button_btn: 'Bye'
+  },
 
-  // { 
-  //   image: '../../../../../assets/product1.png',
-  //   title: 'School Bag Canvas with Art Kit',
-  //   subtitle: 'Bag of Assorted Stationery Crayons , Sketch Pens.',
-  //   description: ' Oil Pastel, Gel pens, Mechanical Pencils, Clay with Kids Activity Book inside',
+  { 
+    image: '../../../../../assets/product1.png',
+    title: 'School Bag Canvas with Art Kit',
+    subtitle: 'Bag of Assorted Stationery Crayons , Sketch Pens.',
+    description: ' Oil Pastel, Gel pens, Mechanical Pencils, Clay with Kids Activity Book inside',
 
-  //   reviews: 75,
-  //   offers: 5,
-  //   rating : 4.5,
-  //   price: 150,
+    reviews: 75,
+    offers: 5,
+    rating : 4.5,
+    price: 150,
 
-  //   favorite: 'favorite_border',
-  //   button_btn: 'Bye'
-  // },
+    favorite: 'favorite_border',
+    button_btn: 'Bye'
+  },
 ];
 
 @Component({
@@ -173,13 +175,33 @@ const ProductData: ListProductData[] = [
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.scss']
 })
-export class FavoritesComponent implements OnInit {
+export class FavoritesComponent implements OnInit, OnDestroy {
+  [x: string]: any;
 
-  listDatas = ProductData;
+  pageSize$:  number;
+  currentPage$: number;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  listDatas: Observable<any>;
+  dataSource: MatTableDataSource<ListProductData> = new MatTableDataSource<ListProductData>(ProductData);
+  constructor(private changeDetectorRef: ChangeDetectorRef) { }
 
-  constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.changeDetectorRef.detectChanges();
+    this.dataSource.paginator = this.paginator;
+    this.listDatas = this.dataSource.connect();
   }
 
+  ngOnDestroy() {
+    if (this.dataSource) { 
+      this.dataSource.disconnect(); 
+    }
+  }
+  showMore(){
+    this.pageSize$ = 5
+    this.currentPage$ = 0
+    this.pageSize$ = this.currentPage$ + 1;
+    
+    this.get(10, this.currentPage$, 'Recents'); 
+    }
 }

@@ -151,7 +151,8 @@ import { AddAddresUpdateComponent } from './private/my-account/address-book/add-
 import { NgxMaskModule } from 'ngx-mask'
 import { ImgMagnifier } from "ng-img-magnifier";
 import { NguCarouselModule } from '@ngu/carousel';
-
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -267,6 +268,7 @@ import { NguCarouselModule } from '@ngu/carousel';
     MatIconModule,
     MatCardModule,
     MatTabsModule,
+    InfiniteScrollModule,
     NgxMaskModule.forRoot(),
     MatButtonModule,
     SocialLoginModule,
@@ -277,6 +279,7 @@ import { NguCarouselModule } from '@ngu/carousel';
     MatSidenavModule,
     MatInputModule,
     MatPaginatorModule,
+    MatProgressSpinnerModule,
     HttpClientModule,
     MatFormFieldModule,
     FormsModule,
